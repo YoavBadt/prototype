@@ -11,6 +11,7 @@ const defaultState = {
     baseUnit: 24,
     baseUnitDivisions: 2,
     baseUnitOffset: 0,
+    baseUnitVisibility : 0.1,
     baseUnitShow : true,
     baseUnitColor: 'black',
     gridPositions: gridPositions(12,120,24),
@@ -19,13 +20,58 @@ const defaultState = {
     columnColor: 'blue',
     gutterWidth: 24,
     screen : 1,
+    screenFake: 1,
     stage: 1704,
     margin: 108
   };
 
 export default {
-  'state_320':  { ...defaultState, columnNumber:1, columnWidth: 120, screenFake: 320 },
-  'state_720':  { ...defaultState, columnNumber:6, columnWidth: 120, screenFake: 720 },
-  'state_1440': { ...defaultState, columnNumber:8, columnWidth: 120, screenFake: 1440 },
-  'state_1920': { ...defaultState, columnNumber:12, columnWidth: 120, screenFake: 1920 },
+  state_320 : {
+    ...defaultState,
+    screenFake: 320,
+    baseFontSize: 14,
+    baseUnit: 20,
+    baseLineHeight: 20,
+    columnNumber:2,
+    columnWidth: 120,
+    gutterWidth: 20,
+    stage: 1,
+    margin: 1
+    },
+  state_720 : {
+    ...defaultState,
+    screenFake: 720,
+    baseFontSize: 16,
+    baseUnit: 24,
+    baseLineHeight: 24,
+    columnNumber:6,
+    columnWidth: 116,
+    gutterWidth: 24,
+    stage: 1,
+    margin: 1
+    },
+  state_1440 : {
+    ...defaultState,
+    screenFake: 1440,
+    baseFontSize: 18,
+    baseUnit: 28,
+    baseLineHeight: 28,
+    columnNumber:8,
+    columnWidth: 140,
+    gutterWidth: 28,
+    stage: 1,
+    margin: 1
+    },
+  state_1920 : {
+    ...defaultState,
+    screenFake: 1920,
+    baseFontSize: 20,
+    baseUnit: 30,
+    baseLineHeight: 30,
+    columnNumber:12,
+    columnWidth: 150,
+    gutterWidth: 30,
+    stage: 1,
+    margin: 1
+    }
 };

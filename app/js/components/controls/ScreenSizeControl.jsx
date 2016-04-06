@@ -53,7 +53,7 @@ class ScreenSizeControl extends React.Component {
         <div style={style.section}>
         <button
           style={style.button}
-          value="320" 
+          value={320} 
           onClick={(e) => store.dispatch({type: 'SCREEN_FAKE_CHANGE',payload: e.target.value})}
         >
         320

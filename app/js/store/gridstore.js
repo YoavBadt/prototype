@@ -1,42 +1,47 @@
 import { combineReducers } from 'redux';
 import {scaleCalculator, gridPositions} from './lib';
+
+import defaultStates from './default-states';
+
 const stage = (columnNumber,columnWidth,gutterWidth) => {
   let stage = ( (columnNumber*columnWidth)+((columnNumber-1)*gutterWidth) );
   return stage
 };
-import defaultStates from './default-states';
-let myState = JSON.parse(
-  localStorage['state_1440'] ? 
-    localStorage['state_1440'] : (
-      localStorage['state_1440'] = JSON.stringify(defaultStates['state_1440'])
-    )
-);
+
+// let myState = JSON.parse(
+//   localStorage['state_1920'] ?
+//     localStorage['state_1920'] : (
+//       localStorage['state_1920'] = JSON.stringify(defaultStates['state_1920'])
+//     )
+// );
+
+let myState = defaultStates.state_1920
 
 const gridStore = (state = myState, action) => {
   switch (action.type) {
     case 'SAVE':
-      localStorage[`state_${state.screenFake}`] = JSON.stringify(state);
+      // localStorage[`state_${state.screenFake}`] = JSON.stringify(state);
       return state;
     case 'SCREEN_FAKE_CHANGE':
       // localStorage[`state_${state.screenFake}`] = JSON.stringify(state);
-      state = localStorage[`state_${action.payload}`] ? JSON.parse(localStorage[`state_${action.payload}`]) : 
-              defaultStates[`state_${action.payload}`] ? defaultStates[`state_${action.payload}`] : 
-              state;
+      // state = localStorage[`state_${action.payload}`] ? JSON.parse(localStorage[`state_${action.payload}`]) :
+      //         defaultStates[`state_${action.payload}`] ? defaultStates[`state_${action.payload}`] :
+      //         state;
+      state = defaultStates.state_320;
       return{
         ...state,
-        screenFake: action.payload 
+        screenFake: action.payload
       };
     case 'SET_SCREEN':
       return{
         ...state,
         screen : action.payload,
-        screenFake : action.payload
+        // screenFake : action.payload
       };
     case 'CHANGE_SCREEN':
       return{
         ...state,
         screen : action.payload
-        
       };
     case 'BASEFONTSIZE_PLUS':
       return {
@@ -181,10 +186,5 @@ const gridStore = (state = myState, action) => {
       return state;
   }
 };
-
-
-// const gridStore = combineReducers({
-//   baseLineStore,
-// });
 
 export default gridStore

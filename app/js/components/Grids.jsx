@@ -10,10 +10,9 @@ class Grids extends React.Component {
   render() {
     return (
       <div>
-      <BaseGrid />
-      <BaseLineGrid />
-      <ColumnGrid />
-      
+        <BaseGrid />
+        <BaseLineGrid />
+        <ColumnGrid />
       </div>
     )
   };
