@@ -26,8 +26,10 @@ class BaseGrid extends React.Component {
 
     let divisions = Unit / state.gridStore.baseUnitDivisions;
     let offset = state.gridStore.baseUnitOffset
+    
     let color = state.gridStore.baseUnitColor;
-    let opacity = "0.5";
+    
+    let opacity = "0.2";
 
     let ColNum = state.columnGridNumber;
     let ColWidth = state.columnWidth * Unit;
@@ -39,12 +41,11 @@ class BaseGrid extends React.Component {
     let points2 = ['0,'+(divisions-0.5),+(divisions-0.5)+','+(divisions-0.5),+(divisions-0.5)+',0'];
 
     let style = {
-      width:'100vw',
+      width: state.gridStore.screenFake,
       height:'100vh',
       position: 'absolute',
       left: '0',
       top: '0',
-      zIndex: '-100'
     }
     return (
       <div>

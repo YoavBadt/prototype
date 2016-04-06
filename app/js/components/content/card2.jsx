@@ -43,6 +43,8 @@ class Card2 extends React.Component {
     }
     return (
       <div style={style.main}>
+      stage: {state.gridStore.stage}
+      screen: {state.gridStore.screen}
       </div>
     )
   };

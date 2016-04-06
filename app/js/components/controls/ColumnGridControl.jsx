@@ -58,7 +58,7 @@ class ColumnGridControl extends React.Component {
             size={20}
           />
         </div>
-        {state.gridStore.gridPositions}
+        <div style={{display: 'none'}}>{state.gridStore.gridPositions}</div>
       </div>
     )
   };

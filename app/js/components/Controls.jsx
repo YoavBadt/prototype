@@ -1,5 +1,6 @@
 import React from 'react';
 
+import ScreenSizeControl from './controls/ScreenSizeControl.jsx'
 import BaseUnitControl from './controls/BaseUnitControl.jsx';
 import BaseLineHeightControl from './controls/BaseLineHeightControl.jsx';
 import BaseFontSizeControl from './controls/BaseFontSizeControl.jsx';
@@ -11,6 +12,7 @@ class Controls extends React.Component {
     let style = {
       main : {
       position: 'absolute',
+      zIndex: 1000,
       top: 20,
       left: 20,
       background: 'rgba(255,255,255,1)',
@@ -47,6 +49,7 @@ class Controls extends React.Component {
     return (
       <div style={style.main}>
         <div style={style.title}><h4 style={{margin:0}}>Main Settings</h4></div>
+        <ScreenSizeControl/>
         <BaseFontSizeControl style={style.section}/>
         <ModularScaleControl style={style.section}/>
         <BaseLineHeightControl style={style.section}/>

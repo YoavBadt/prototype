@@ -12,8 +12,8 @@ const scaleCalculator = (baseFontSize,modularScale) => {
   return scale
 };
 
-const gridCalculator = (columnNumber,columnWidth,gutterWidth) => {
-  let screen = window.innerWidth-1;
+const gridPositions = (columnNumber,columnWidth,gutterWidth) => {
+  let screen = window.innerWidth;
   let stage = ( (columnNumber*columnWidth)+((columnNumber-1)*gutterWidth) );
   let margin = (screen - stage) / 2;
   let grid = [0,margin];
@@ -28,33 +28,56 @@ const gridCalculator = (columnNumber,columnWidth,gutterWidth) => {
   return grid;
 };
 
+const stage = (columnNumber,columnWidth,gutterWidth) => {
+  let stage = ( (columnNumber*columnWidth)+((columnNumber-1)*gutterWidth) );
+  return stage
+};
 
-
-const gridStore = (
-state = {
+let myState = JSON.parse(localStorage['state_1440'] ? localStorage['state_1440'] : (localStorage['state_1440'] = JSON.stringify({
   baseFontSize: 16,
   modularScale: 1.125,
   scale: scaleCalculator(16,1.125),
-  baseLineHeight: 20,
-  baseLineDivisions: 2,
+  baseLineHeight: 24,
+  baseLineDivisions: 1,
   baseLineShow : true,
-  baseLineColor: 'skyblue',
+  baseLineColor: 'red',
   baseUnit: 24,
   baseUnitDivisions: 2,
   baseUnitOffset: 0,
   baseUnitShow : true,
-  baseUnitColor: 'grey',
-  gridPositions: gridCalculator(12,120,24),
+  baseUnitColor: 'black',
+  gridPositions: gridPositions(12,120,24),
   columnNumber: 12,
   columnWidth: 120,
+  columnColor: 'blue',
   gutterWidth: 24,
-  screen : 2,
-  stage: 2,
-  margin: 228,
-},
-action
-) => {
+  screen : 1,
+  screenFake: 1440,
+  stage: 1704,
+  margin: 108
+})));
+
+const gridStore = (state = myState, action) => {
   switch (action.type) {
+    case 'SCREEN_FAKE_CHANGE':
+      localStorage[`state_${state.screenFake}`] = JSON.stringify(state);
+      state = localStorage[`state_${action.payload}`] ? JSON.parse(localStorage[`state_${action.payload}`]) : state;
+      return{
+        ...state,
+        screenFake: action.payload 
+      };
+    case 'SET_SCREEN':
+      return{
+        ...state,
+        screen : action.payload,
+        screenFake : action.payload
+      };
+    case 'CHANGE_SCREEN':
+      return{
+        ...state,
+        screen : action.payload
+        
+      };
     case 'BASEFONTSIZE_PLUS':
       return {
         ...state,
@@ -149,7 +172,9 @@ action
       return {
         ...state,
         columnNumber : state.columnNumber + 1,
-        gridPositions : gridCalculator(state.columnNumber+1,state.columnWidth,state.gutterWidth)
+        stage : stage(state.columnNumber+1,state.columnWidth,state.gutterWidth),
+        gridPositions : gridPositions(state.columnNumber+1,state.columnWidth,state.gutterWidth)
+
       };
     case 'COLUMN_NUMBER_MINUS':
       if(state.columnNumber === 1){
@@ -158,13 +183,14 @@ action
       return {
         ...state,
         columnNumber : state.columnNumber - 1,
-        gridPositions : gridCalculator(state.columnNumber-1,state.columnWidth,state.gutterWidth)
+        stage : stage(state.columnNumber-1,state.columnWidth,state.gutterWidth),
+        gridPositions : gridPositions(state.columnNumber-1,state.columnWidth,state.gutterWidth)
       }};
     case 'COLUMN_WIDTH_PLUS':
       return {
         ...state,
         columnWidth : state.columnWidth + 1,
-        gridPositions : gridCalculator(state.columnNumber,state.columnWidth+1,state.gutterWidth)
+        gridPositions : gridPositions(state.columnNumber,state.columnWidth+1,state.gutterWidth)
       };
     case 'COLUMN_WIDTH_MINUS':
       if(state.columnWidth === 1){
@@ -173,27 +199,29 @@ action
       return {
         ...state,
         columnWidth : state.columnWidth - 1,
-        gridPositions : gridCalculator(state.columnNumber,state.columnWidth-1,state.gutterWidth)
+        gridPositions : gridPositions(state.columnNumber,state.columnWidth-1,state.gutterWidth)
       }};
     case 'GUTTER_WIDTH_PLUS':
       return {
         ...state,
         gutterWidth : state.gutterWidth + 1,
-        gridPositions : gridCalculator(state.columnNumber,state.columnWidth,state.gutterWidth+1)
+        gridPositions : gridPositions(state.columnNumber,state.columnWidth,state.gutterWidth+1)
       };
     case 'GUTTER_WIDTH_MINUS':
       if(state.gutterWidth === 1){
         return state
       }else{
-      return {
-        ...state,
-        gutterWidth : state.gutterWidth - 1,
-        gridPositions : gridCalculator(state.columnNumber,state.columnWidth,state.gutterWidth-1)
-      }};
+        return {
+          ...state,
+          gutterWidth : state.gutterWidth - 1,
+          gridPositions : gridPositions(state.columnNumber,state.columnWidth,state.gutterWidth-1)
+        }
+      };
     default:
       return state;
   }
 };
+
 
 // const gridStore = combineReducers({
 //   baseLineStore,

@@ -13,6 +13,7 @@ class Grids extends React.Component {
       <BaseGrid />
       <BaseLineGrid />
       <ColumnGrid />
+      
       </div>
     )
   };

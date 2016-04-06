@@ -25,21 +25,20 @@ class ColumnGrid extends React.Component {
 
     let Stage = (ColNum * ColWidth) + ((ColNum * GutWidth)-GutWidth);
 
-    var position = ((window.innerWidth + 1) - Stage) / 2
+    var position = (state.gridStore.screenFake - Stage) / 2 //margin simulator
     var fix = position % (ColWidth+GutWidth)
 
-    let Color = "pink";
-    let FillOpacity1 = "0.5";
-    let StrokeOpacity ="0";
+    let Color = state.gridStore.columnColor;
+    let FillOpacity1 = "0";
+    let StrokeOpacity ="1";
 
 
     let style = {
-      width:'100vw',
+      width: state.gridStore.screenFake,
       height:'100vh',
       position: 'absolute',
       left: '0',
       top: '0',
-      zIndex: '-100'
     }
     return (
       <div>
@@ -47,46 +46,29 @@ class ColumnGrid extends React.Component {
         <defs>
           <pattern
             id="ColumnPattern"
-            x={fix}
+            x={fix-1}
             y="0"
             width={ColWidth+GutWidth}
             height="100%"
             patternUnits="userSpaceOnUse"
           >
             <rect
-              x="0"
-              y="0"
+              x="0.5"
+              y="-1"
               width={ColWidth}
-              height="100%"
+              height="101%"
               fill={Color}
               fillOpacity={FillOpacity1}
               stroke={Color}
-              strokeOpacity="0"
+              strokeOpacity={StrokeOpacity}
+              strokWidth="1"
             />
-            <line
-              strokeWidth="1"
-              stroke={Color}
-              strokeOpacity={StrokeOpacity}
-              x1={ColWidth+GutWidth-0.5}
-              x2={ColWidth+GutWidth-0.5}
-              y1="0"
-              y2="100%"
-              />
               <line
               strokeWidth="1"
               stroke={Color}
               strokeOpacity={StrokeOpacity}
-              x1={ColWidth - 0.5}
-              x2={ColWidth - 0.5}
-              y1="0"
-              y2="100%"
-              />
-              <line
-              strokeWidth="1"
-              stroke={Color}
-              strokeOpacity={StrokeOpacity}
-              x1={(ColWidth+(GutWidth/2)) - 0.5}
-              x2={(ColWidth+(GutWidth/2)) - 0.5}
+              x1={(ColWidth+(GutWidth/2)) + 0.5}
+              x2={(ColWidth+(GutWidth/2)) + 0.5}
               y1="0"
               y2="100%"
               strokeDasharray="1,1"
@@ -94,7 +76,7 @@ class ColumnGrid extends React.Component {
               
           </pattern>
         </defs>
-        <rect  x={position-1} y="0" width={Stage+1} height="100%" fill="url(#ColumnPattern)" fillOpacity="1"></rect>
+        <rect  x={position-1} y="0" width={Stage+3} height="100%" fill="url(#ColumnPattern)" fillOpacity="1"></rect>
       </svg>
     </div>
     )

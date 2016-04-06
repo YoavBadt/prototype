@@ -7,7 +7,6 @@ class Content extends React.Component {
   render() {
     return (
       <div>
-      <Card2 />
       </div>
     )
   };
