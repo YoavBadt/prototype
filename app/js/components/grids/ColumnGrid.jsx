@@ -29,7 +29,7 @@ class ColumnGrid extends React.Component {
     var fix = position % (ColWidth+GutWidth)
 
     let Color = state.gridStore.columnColor;
-    let FillOpacity1 = "0";
+    let FillOpacity1 = "0.2";
     let StrokeOpacity ="1";
 
 

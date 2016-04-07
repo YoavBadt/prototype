@@ -29,10 +29,12 @@
   "dependencies": {
     "deep-freeze": "0.0.1",
     "expect": "^1.16.0",
+    "firebase": "^2.4.2",
     "radium": "^0.17.1",
     "react": "^0.14.5",
     "react-dom": "^0.14.5",
     "react-redux": "^4.0.6",
+    "reactfire": "^0.6.0",
     "redux": "^3.0.5",
     "redux-devtools": "^3.1.1"
   }

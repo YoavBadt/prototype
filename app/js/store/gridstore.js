@@ -1,12 +1,24 @@
 import { combineReducers } from 'redux';
 import {scaleCalculator, gridPositions} from './lib';
 
+import defaultStates from './default-states';
+
 const stage = (columnNumber,columnWidth,gutterWidth) => {
   let stage = ( (columnNumber*columnWidth)+((columnNumber-1)*gutterWidth) );
   return stage
 };
 
-import defaultStates from './default-states';
+
+// import defaultStates from './default-states';
+
+// let myState = JSON.parse(
+//   localStorage['state_1920'] ?
+//     localStorage['state_1920'] : (
+//       localStorage['state_1920'] = JSON.stringify(defaultStates['state_1920'])
+//     )
+// );
+
+// let myState = defaultStates.state_1920
 
 // let myState = JSON.parse(
 //   localStorage['state_1440'] ? 
@@ -46,19 +58,18 @@ const gridStore = (
     case 'SCREEN_FAKE_CHANGE':
       return{
         ...state,
-        screenFake: action.payload 
+        screenFake: action.payload
       };
     case 'SET_SCREEN':
       return{
         ...state,
         screen : action.payload,
-        screenFake : action.payload
+        // screenFake : action.payload
       };
     case 'CHANGE_SCREEN':
       return{
         ...state,
         screen : action.payload
-        
       };
     case 'BASEFONTSIZE_PLUS':
       return {
@@ -203,10 +214,5 @@ const gridStore = (
       return state;
   }
 };
-
-
-// const gridStore = combineReducers({
-//   baseLineStore,
-// });
 
 export default gridStore

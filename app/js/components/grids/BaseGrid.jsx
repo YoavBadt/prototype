@@ -23,13 +23,11 @@ class BaseGrid extends React.Component {
     const state = store.getState();
 
     let Unit = state.gridStore.baseUnit
-
     let divisions = Unit / state.gridStore.baseUnitDivisions;
     let offset = state.gridStore.baseUnitOffset
-    
+
     let color = state.gridStore.baseUnitColor;
-    
-    let opacity = "0.2";
+    let opacity = state.gridStore.baseUnitVisibility;
 
     let ColNum = state.columnGridNumber;
     let ColWidth = state.columnWidth * Unit;
