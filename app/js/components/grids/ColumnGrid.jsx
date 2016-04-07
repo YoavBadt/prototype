@@ -16,23 +16,26 @@ class ColumnGrid extends React.Component {
     const { store } = this.context;
     const state = store.getState();
 
-    let Unit = state.gridStore.baseUnit;
-    let Baseline = state.gridStore.baseLineHeight;
-    let ColNum = state.gridStore.columnNumber;
 
+    let ColNum = state.gridStore.columnNumber;
+    
     let ColWidth = state.gridStore.columnWidth;
     let GutWidth = state.gridStore.gutterWidth;
-
+    
+    let columnPattern = ColWidth + GutWidth
+    
+    
     let Stage = (ColNum * ColWidth) + ((ColNum * GutWidth)-GutWidth);
 
-    var position = (state.gridStore.screenFake - Stage) / 2 //margin simulator
-    var fix = position % (ColWidth+GutWidth)
+    
+    let position = (state.gridStore.screenFake - Stage) / 2 //margin simulator
+    let fix = (position % (ColWidth+GutWidth)) - 1
 
     let Color = state.gridStore.columnColor;
-    let FillOpacity1 = "0.2";
+    let FillOpacity1 = "0";
     let StrokeOpacity ="1";
 
-
+    
     let style = {
       width: state.gridStore.screenFake,
       height:'100vh',
@@ -46,9 +49,9 @@ class ColumnGrid extends React.Component {
         <defs>
           <pattern
             id="ColumnPattern"
-            x={fix-1}
+            x={fix}
             y="0"
-            width={ColWidth+GutWidth}
+            width={columnPattern}
             height="100%"
             patternUnits="userSpaceOnUse"
           >

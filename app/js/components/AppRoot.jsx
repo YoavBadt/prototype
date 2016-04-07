@@ -5,7 +5,6 @@ import Controls from './Controls.jsx';
 import Wrapper from './Wrapper.jsx';
 import Info from './Info.jsx';
 
-//the store
 import store from '../store';
 
 

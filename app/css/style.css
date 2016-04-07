@@ -49,3 +49,68 @@ input[type=range]:focus::-webkit-slider-runnable-track {
     background: pink;
 }
 
+input[type=number]{
+    -webkit-appearance: none;
+    display: block;
+    box-sizing: border-box;
+    border: 1px solid red;
+    border-radius: 4px;
+    background: white;
+    width: 45px;
+    height: 30px;
+    padding:0;
+    margin:0;
+    color: red;
+    text-align: center;
+    line-height: 28px;
+    boxSizing: border-box;
+    font-family: monospace;
+}
+
+input[type=number]:focus {
+    outline: none;
+}
+input[type=number]::-webkit-inner-spin-button { 
+    -webkit-appearance: none;
+    opacity: 1;
+    cursor:pointer;
+    display:block;
+    width:15px;
+    height:28px;
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+    background:red;
+    text-align:center;
+    position:relative;
+    margin:0;
+    padding: 0;
+}
+
+input[type=number]::-webkit-inner-spin-button:before,
+input[type=number]::-webkit-inner-spin-button:after {
+    position:absolute;
+    right:0;
+    font-family: monospace;
+    background: rgba(255,255,255,0.9);
+    border: 'none',
+    color : 'red',
+    boxSizing: border-box;
+}
+
+input[type=number]::-webkit-inner-spin-button:before {
+    border-top-right-radius: 4px;
+    width: 14px;
+    height: 13.5px;
+    line-height: 13px;
+    content: "+";
+    top:0px;
+}
+
+input[type=number]::-webkit-inner-spin-button:after {
+    border-bottom-right-radius: 4px;
+    width: 14px;
+    height: 13.5px;
+    content: "-";
+    bottom:0px;
+    line-height: 12px;
+}

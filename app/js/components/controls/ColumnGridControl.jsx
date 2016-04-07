@@ -3,6 +3,12 @@ import { connect } from 'react-redux';
 
 import NumInput from '../NumInput.jsx'
 
+import {
+  columnNumberChange,
+  columnWidthChange,
+  gutterWidthChange
+} from '../../actions'
+
 class ColumnGridControl extends React.Component {
   componentDidMount() {
     const { store } = this.context;
@@ -34,28 +40,32 @@ class ColumnGridControl extends React.Component {
     return (
       <div style={this.props.style}>
         <div style={style.section}>
-
           <NumInput
             name="Columns"
             label={state.gridStore.columnNumber}
-            plus={() =>store.dispatch({type: 'COLUMN_NUMBER_PLUS'})}
-            minus={() =>store.dispatch({type: 'COLUMN_NUMBER_MINUS'})}
-            size={20}
+            defaultValue={state.gridStore.columnNumber}
+            min="1"
+            max="18"
+            step="1" 
+            onChange={ (e) => store.dispatch(columnNumberChange(e.target.value)) }
           />
-
           <NumInput
             name="Column Width"
             label={state.gridStore.columnWidth}
-            plus={() =>store.dispatch({type: 'COLUMN_WIDTH_PLUS'})}
-            minus={() =>store.dispatch({type: 'COLUMN_WIDTH_MINUS'})}
-            size={20}
+            defaultValue={state.gridStore.columnWidth}
+            min="1"
+            max="5000"
+            step="1" 
+            onChange={ (e) => store.dispatch(columnWidthChange(e.target.value)) }
           />
           <NumInput
             name="Gutter Width"
             label={state.gridStore.gutterWidth}
-            plus={() =>store.dispatch({type: 'GUTTER_WIDTH_PLUS'})}
-            minus={() =>store.dispatch({type: 'GUTTER_WIDTH_MINUS'})}
-            size={20}
+            defaultValue={state.gridStore.gutterWidth}
+            min="0"
+            max="1000"
+            step="1" 
+            onChange={ (e) => store.dispatch(gutterWidthChange(e.target.value)) }
           />
         </div>
         <div style={{display: 'none'}}>{state.gridStore.gridPositions}</div>

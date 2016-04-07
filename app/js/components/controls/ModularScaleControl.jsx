@@ -1,9 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import NumInput from '../NumInput.jsx'
 import RangeInput from '../RangeInput.jsx'
 
+import { ModularScaleChange } from '../../actions'
 
 class ModularScaleControl extends React.Component {
   componentDidMount() {
@@ -55,7 +55,7 @@ class ModularScaleControl extends React.Component {
             label={state.gridStore.modularScale}
             defaultvalue={state.gridStore.modularScale}
             min="1.001" max="1.999" step="0.001"
-            onChange={ (e) => store.dispatch({type: 'MODULARSCALE_CHANGE',payload: e.target.value}) }
+            onChange={ (e) => store.dispatch(ModularScaleChange(e.target.value)) }
           />
           <ul style={style.ul}>
           <li style={style.li}>{state.gridStore.scale[0]}</li>

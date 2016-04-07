@@ -3,6 +3,10 @@ import { connect } from 'react-redux';
 
 import NumInput from '../NumInput.jsx'
 
+import { BaseUnitChange } from '../../actions'
+
+
+
 class BaseUnitControl extends React.Component {
   componentDidMount() {
     const { store } = this.context;
@@ -37,23 +41,29 @@ class BaseUnitControl extends React.Component {
           <NumInput
             name="Base Unit"
             label={state.gridStore.baseUnit}
-            plus={() =>store.dispatch({type: 'BASEUNIT_PLUS'})}
-            minus={() =>store.dispatch({type: 'BASEUNIT_MINUS'})}
-            size={20}
+            defaultValue={state.gridStore.baseUnit}
+            min="4"
+            max="200"
+            step="2" 
+            onChange={ (e) => store.dispatch(BaseUnitChange(e.target.value)) }
           />
           <NumInput
             name="Divisions"
             label={state.gridStore.baseUnitDivisions}
-            plus={() =>store.dispatch({type: 'BASEUNIT_DIVISIONS_PLUS'})}
-            minus={() =>store.dispatch({type: 'BASEUNIT_DIVISIONS_MINUS'})}
-            size={20}
+            defaultValue={state.gridStore.baseUnitDivisions}
+            min="1"
+            max="4"
+            step="1"
+            onChange={ (e) => store.dispatch(BaseUnitDivisionChange(e.target.value)) }
           />
           <NumInput
             name="Offset"
             label={state.gridStore.baseUnitOffset}
-            plus={() =>store.dispatch({type: 'BASEUNIT_OFFSET_PLUS'})}
-            minus={() =>store.dispatch({type: 'BASEUNIT_OFFSET_MINUS'})}
-            size={20}
+            defaultValue={state.gridStore.baseUnitOffset}
+            min="0"
+            max="{state.gridStore.baseUnitOffset}"
+            step="1"
+            onChange={ (e) => store.dispatch(BaseUnitOffsetChange(e.target.value)) }
           />
         </div>
       </div>

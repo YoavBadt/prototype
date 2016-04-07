@@ -1,7 +1,7 @@
 import React from 'react';
 import Radium from 'radium'
 
-class NumInput extends React.Component {
+class RangeInput extends React.Component {
   render() {
   let size = this.props.size
   let style = {
@@ -56,9 +56,9 @@ class NumInput extends React.Component {
   )
   };
 };
-NumInput = Radium(NumInput)
+RangeInput = Radium(RangeInput)
 
-export default NumInput
+export default RangeInput
 
 
 

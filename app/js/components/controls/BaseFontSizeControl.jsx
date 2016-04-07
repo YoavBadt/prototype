@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 
 import NumInput from '../NumInput.jsx'
 
+import {BaseFontSizeChange} from '../../actions'
+
 class BaseFontSizeControl extends React.Component {
   componentDidMount() {
     const { store } = this.context;
@@ -37,8 +39,11 @@ class BaseFontSizeControl extends React.Component {
           <NumInput
             name="Base Font Size"
             label={state.gridStore.baseFontSize}
-            plus={() =>store.dispatch({type: 'BASEFONTSIZE_PLUS'})}
-            minus={() =>store.dispatch({type: 'BASEFONTSIZE_MINUS'})}
+            defaultValue={state.gridStore.baseFontSize}
+            min="6"
+            max="100"
+            step="1"
+            onChange={ (e) => store.dispatch(BaseFontSizeChange(e.target.value)) }
           />
         </div>
       </div>

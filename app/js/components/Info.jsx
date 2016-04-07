@@ -39,7 +39,8 @@ class Info extends React.Component {
       <li>screen : {state.gridStore.screen}</li>
       <li>screenFake : {state.gridStore.screenFake}</li>
       <li>stage : {state.gridStore.stage}</li>
-
+      <li>gutter : {state.gridStore.gutterWidth}</li>
+      <li>basefont  : {state.gridStore.baseFontSize}</li>
       </ul>
       </div>
     )

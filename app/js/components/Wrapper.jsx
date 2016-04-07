@@ -22,9 +22,9 @@ class Wrapper extends React.Component {
       this.forceUpdate()
     );
     //setting screen
-    let screen = window.innerWidth;
-    store.dispatch({type: 'SET_SCREEN',payload : screen});
-    window.addEventListener('resize', this.setScreen);
+    // let screen = window.innerWidth;
+    // store.dispatch({type: 'SET_SCREEN',payload : screen});
+    // window.addEventListener('resize', this.setScreen);
   }
   componentWillUnmount() {
     this.unsubscribe();

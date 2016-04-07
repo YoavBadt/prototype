@@ -1,34 +1,26 @@
-import { combineReducers } from 'redux';
 import {scaleCalculator, gridPositions} from './lib';
 
-import defaultStates from './default-states';
-
-const stage = (columnNumber,columnWidth,gutterWidth) => {
-  let stage = ( (columnNumber*columnWidth)+((columnNumber-1)*gutterWidth) );
-  return stage
-};
+import firebase from 'firebase'
 
 
-// import defaultStates from './default-states';
+// const stage = (columnNumber,columnWidth,gutterWidth) => {
+//   let stage = ( (columnNumber*columnWidth)+((columnNumber-1)*gutterWidth) );
+//   return stage
+// };
 
-// let myState = JSON.parse(
-//   localStorage['state_1920'] ?
-//     localStorage['state_1920'] : (
-//       localStorage['state_1920'] = JSON.stringify(defaultStates['state_1920'])
-//     )
-// );
+// var firebaseRef = new Firebase('https://typographyprototype.firebaseio.com/state');
 
-// let myState = defaultStates.state_1920
 
-// let myState = JSON.parse(
-//   localStorage['state_1440'] ? 
-//     localStorage['state_1440'] : (
-//       localStorage['state_1440'] = JSON.stringify(defaultStates['state_1440'])
-//     )
-// );
+// firebaseRef.on("value", function(snapshot) {
+//   console.log(snapshot.val())
+//   return snapshot.val()
+// });
+
+
 
 const gridStore = (
   state = {
+    screenFake: 1920,
     baseFontSize: 16,
     modularScale: 1.125,
     scale: scaleCalculator(16,1.125),
@@ -39,6 +31,7 @@ const gridStore = (
     baseUnit: 24,
     baseUnitDivisions: 2,
     baseUnitOffset: 0,
+    baseUnitVisibility: 0.5,
     baseUnitShow : true,
     baseUnitColor: 'black',
     gridPositions: gridPositions(12,120,24),
@@ -47,7 +40,6 @@ const gridStore = (
     columnColor: 'blue',
     gutterWidth: 24,
     screen : 1,
-    screenFake: 1920,
     stage: 1704,
     marginLeft: 108,
     marginRight: 108
@@ -60,155 +52,61 @@ const gridStore = (
         ...state,
         screenFake: action.payload
       };
-    case 'SET_SCREEN':
-      return{
-        ...state,
-        screen : action.payload,
-        // screenFake : action.payload
-      };
-    case 'CHANGE_SCREEN':
-      return{
-        ...state,
-        screen : action.payload
-      };
-    case 'BASEFONTSIZE_PLUS':
+    case 'BASE_FONTSIZE_CHANGE':
       return {
         ...state,
-        baseFontSize : state.baseFontSize + 1,
-        scale : scaleCalculator(state.baseFontSize + 1,state.modularScale)
+        baseFontSize : action.payload,
+        scale : scaleCalculator(action.payload,state.modularScale)
       };
-    case 'BASEFONTSIZE_MINUS':
-      if(state.baseFontSize === 1){
-        return state
-      }else{
-        return {
-          ...state,
-          baseFontSize : state.baseFontSize - 1,
-          scale : scaleCalculator(state.baseFontSize - 1,state.modularScale)
-        }
-      };
-    case 'MODULARSCALE_CHANGE':
+    case 'MODULAR_SCALE_CHANGE':
       return {
         ...state,
         modularScale : action.payload,
         scale : scaleCalculator(state.baseFontSize,action.payload)
       };
-    case 'BASELINE_PLUS':
+    case 'BASELINE_CHANGE':
       return {
         ...state,
-        baseLineHeight : state.baseLineHeight + 1
+        baseLineHeight : action.payload
       };
-    case 'BASELINE_MINUS':
+    case 'BASELINE_DIVISIONS_CHANGE':
       return {
         ...state,
-        baseLineHeight : state.baseLineHeight - 1
+        baseLineDivisions : action.payload
       };
-    case 'BASELINE_DIVISIONS_PLUS':
-      if(state.baseLineDivisions === 4){
-        return state
-      }else{
+    case 'BASEUNIT_CHANGE':
       return {
         ...state,
-        baseLineDivisions : state.baseLineDivisions + 1
-      }};
-    case 'BASELINE_DIVISIONS_MINUS':
-      if(state.baseLineDivisions === 1){
-        return state
-      }else{
-      return {
-        ...state,
-        baseLineDivisions : state.baseLineDivisions - 1
-      }};
-    case 'BASEUNIT_PLUS':
-      return {
-        ...state,
-        baseUnit : state.baseUnit + 1
+        baseUnit : action.payload
       };
-    case 'BASEUNIT_MINUS':
+    case 'BASEUNIT_DIVISIONS_CHANGE':
       return {
         ...state,
-        baseUnit : state.baseUnit - 1
+        baseUnitDivisions : action.payload
       };
-    case 'BASEUNIT_DIVISIONS_PLUS':
-      if(state.baseUnitDivisions === 4){
-        return state
-      }else{
+    case 'BASEUNIT_OFFSET_CHANGE':
       return {
         ...state,
-        baseUnitDivisions : state.baseUnitDivisions + 1
-      }};
-    case 'BASEUNIT_DIVISIONS_MINUS':
-      if(state.baseUnitDivisions === 1){
-        return state
-      }else{
-      return {
-        ...state,
-        baseUnitDivisions : state.baseUnitDivisions - 1
-      }};
-    case 'BASEUNIT_OFFSET_PLUS':
-      if(state.baseUnitOffset === state.baseUnit-1){
-        return state
-      }else{
-      return {
-        ...state,
-        baseUnitOffset : state.baseUnitOffset + 1
-      }};
-    case 'BASEUNIT_OFFSET_MINUS':
-      if(state.baseUnitOffset === 0){
-        return state
-      }else{
-      return {
-        ...state,
-        baseUnitOffset : state.baseUnitOffset - 1
-      }};
-    case 'COLUMN_NUMBER_PLUS':
-      return {
-        ...state,
-        columnNumber : state.columnNumber + 1,
-        stage : stage(state.columnNumber+1,state.columnWidth,state.gutterWidth),
-        gridPositions : gridPositions(state.columnNumber+1,state.columnWidth,state.gutterWidth)
-
+        baseUnitOffset : action.payload
       };
-    case 'COLUMN_NUMBER_MINUS':
-      if(state.columnNumber === 1){
-        return state
-      }else{
+    case 'COLUMN_CHANGE':
       return {
         ...state,
-        columnNumber : state.columnNumber - 1,
-        stage : stage(state.columnNumber-1,state.columnWidth,state.gutterWidth),
-        gridPositions : gridPositions(state.columnNumber-1,state.columnWidth,state.gutterWidth)
-      }};
-    case 'COLUMN_WIDTH_PLUS':
-      return {
-        ...state,
-        columnWidth : state.columnWidth + 1,
-        gridPositions : gridPositions(state.columnNumber,state.columnWidth+1,state.gutterWidth)
+        columnNumber : action.payload,
+        stage : stage(action.payload,state.columnWidth,state.gutterWidth),
+        gridPositions : gridPositions(action.payload,state.columnWidth,state.gutterWidth)
       };
-    case 'COLUMN_WIDTH_MINUS':
-      if(state.columnWidth === 1){
-        return state
-      }else{
+    case 'COLUMN_WIDTH_CHANGE':
       return {
         ...state,
-        columnWidth : state.columnWidth - 1,
-        gridPositions : gridPositions(state.columnNumber,state.columnWidth-1,state.gutterWidth)
-      }};
-    case 'GUTTER_WIDTH_PLUS':
-      return {
-        ...state,
-        gutterWidth : state.gutterWidth + 1,
-        gridPositions : gridPositions(state.columnNumber,state.columnWidth,state.gutterWidth+1)
+        columnWidth : action.payload,
+        gridPositions : gridPositions(state.columnNumber,action.payload,state.gutterWidth)
       };
-    case 'GUTTER_WIDTH_MINUS':
-      if(state.gutterWidth === 1){
-        return state
-      }else{
-        return {
-          ...state,
-          gutterWidth : state.gutterWidth - 1,
-          gridPositions : gridPositions(state.columnNumber,state.columnWidth,state.gutterWidth-1)
-        }
+    case 'GUTTER_WIDTH_CHANGE':
+      return {
+        ...state,
+        gutterWidth : action.payload,
+        gridPositions : gridPositions(state.columnNumber,state.columnWidth,action.payload)
       };
     default:
       return state;

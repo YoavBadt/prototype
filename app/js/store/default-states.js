@@ -1,6 +1,7 @@
 import {scaleCalculator, gridPositions} from './lib';
 
-const defaultState = {
+state = {
+    screenFake: 1920,
     baseFontSize: 16,
     modularScale: 1.125,
     scale: scaleCalculator(16,1.125),
@@ -11,7 +12,7 @@ const defaultState = {
     baseUnit: 24,
     baseUnitDivisions: 2,
     baseUnitOffset: 0,
-    baseUnitVisibility : 0.1,
+    baseUnitVisibility: 0.5,
     baseUnitShow : true,
     baseUnitColor: 'black',
     gridPositions: gridPositions(12,120,24),
@@ -20,11 +21,10 @@ const defaultState = {
     columnColor: 'blue',
     gutterWidth: 24,
     screen : 1,
-    screenFake: 1,
     stage: 1704,
     marginLeft: 108,
     marginRight: 108
-  };
+  }
 
 export default {
   state_320 : {
