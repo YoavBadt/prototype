@@ -55,8 +55,6 @@ const visibilityFilter = (
 
 const protoType = combineReducers({
   gridStore,
-  todos,
-  visibilityFilter,
 });
 
 export default createStore(protoType)

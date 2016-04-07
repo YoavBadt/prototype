@@ -1,27 +1,49 @@
 import { combineReducers } from 'redux';
 import {scaleCalculator, gridPositions} from './lib';
+
 const stage = (columnNumber,columnWidth,gutterWidth) => {
   let stage = ( (columnNumber*columnWidth)+((columnNumber-1)*gutterWidth) );
   return stage
 };
-import defaultStates from './default-states';
-let myState = JSON.parse(
-  localStorage['state_1440'] ? 
-    localStorage['state_1440'] : (
-      localStorage['state_1440'] = JSON.stringify(defaultStates['state_1440'])
-    )
-);
 
-const gridStore = (state = myState, action) => {
+import defaultStates from './default-states';
+
+// let myState = JSON.parse(
+//   localStorage['state_1440'] ? 
+//     localStorage['state_1440'] : (
+//       localStorage['state_1440'] = JSON.stringify(defaultStates['state_1440'])
+//     )
+// );
+
+const gridStore = (
+  state = {
+    baseFontSize: 16,
+    modularScale: 1.125,
+    scale: scaleCalculator(16,1.125),
+    baseLineHeight: 24,
+    baseLineDivisions: 1,
+    baseLineShow : true,
+    baseLineColor: 'red',
+    baseUnit: 24,
+    baseUnitDivisions: 2,
+    baseUnitOffset: 0,
+    baseUnitShow : true,
+    baseUnitColor: 'black',
+    gridPositions: gridPositions(12,120,24),
+    columnNumber: 12,
+    columnWidth: 120,
+    columnColor: 'blue',
+    gutterWidth: 24,
+    screen : 1,
+    screenFake: 1920,
+    stage: 1704,
+    marginLeft: 108,
+    marginRight: 108
+  },
+  action
+  ) => {
   switch (action.type) {
-    case 'SAVE':
-      localStorage[`state_${state.screenFake}`] = JSON.stringify(state);
-      return state;
     case 'SCREEN_FAKE_CHANGE':
-      // localStorage[`state_${state.screenFake}`] = JSON.stringify(state);
-      state = localStorage[`state_${action.payload}`] ? JSON.parse(localStorage[`state_${action.payload}`]) : 
-              defaultStates[`state_${action.payload}`] ? defaultStates[`state_${action.payload}`] : 
-              state;
       return{
         ...state,
         screenFake: action.payload 

@@ -20,7 +20,8 @@ const defaultState = {
     gutterWidth: 24,
     screen : 1,
     stage: 1704,
-    margin: 108
+    marginLeft: 108,
+    marginRight: 108
   };
 
 export default {
