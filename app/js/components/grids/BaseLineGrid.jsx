@@ -16,17 +16,19 @@ class BaseLineGrid extends React.Component {
     const { store } = this.context;
     const state = store.getState();
 
-    let baseline = state.gridStore.baseLineHeight;
-    let baselinediv = baseline / state.gridStore.baseLineDivisions
-    let color = state.gridStore.baseLineColor
-
-    let opacity = "1"
+    let baseline = state.gridState.baseLineHeight;
+    let baselinediv = baseline / state.gridState.baseLineDivisions
+ 
+    let color = state.gridGeneral.baseLineColor;
+    let opacity = state.gridGeneral.baseLineVisibility;
+    let show = state.gridGeneral.baseLineShow;
 
     let style = {
       base: {
-        width: state.gridStore.screenFake,
+        width: state.gridState.fakeScreen,
         height:'100vh',
         position: 'absolute',
+        zIndex:-10,
         left: '0',
         top: '0'
       },

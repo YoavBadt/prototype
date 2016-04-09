@@ -2,8 +2,10 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import NumInput from '../NumInput.jsx'
+import NumInput2 from '../NumInput2.jsx'
 
-import {BaseFontSizeChange} from '../../actions'
+
+import {BaseFontSizeChange} from '../../actions/gridStateActions'
 
 class BaseFontSizeControl extends React.Component {
   componentDidMount() {
@@ -36,14 +38,11 @@ class BaseFontSizeControl extends React.Component {
     return (
       <div style={this.props.style}>
         <div style={style.section}>
-          <NumInput
+          <NumInput2
             name="Base Font Size"
-            label={state.gridStore.baseFontSize}
-            defaultValue={state.gridStore.baseFontSize}
-            min="6"
-            max="100"
-            step="1"
-            onChange={ (e) => store.dispatch(BaseFontSizeChange(e.target.value)) }
+            label={state.gridState.baseFontSize}
+            plus={()=>store.dispatch(BaseFontSizeChange(state.gridState.baseFontSize + 1))}
+            minus={()=>store.dispatch(BaseFontSizeChange(state.gridState.baseFontSize - 1))}
           />
         </div>
       </div>

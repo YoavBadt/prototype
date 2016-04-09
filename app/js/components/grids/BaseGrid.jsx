@@ -11,31 +11,27 @@ class BaseGrid extends React.Component {
   componentWillUnmount() {
     this.unsubscribe();
   }
-  onChange(e){
-    const props = this.props;
-    const { store } = this.context;
-    const state = store.getState();
-    console.log(state.baseUnit)
-  }
   render() {
     const props = this.props;
     const { store } = this.context;
     const state = store.getState();
 
-    let Unit = state.gridStore.baseUnit
-    let divisions = Unit / state.gridStore.baseUnitDivisions;
-    let offset = state.gridStore.baseUnitOffset
+    let Unit = state.gridState.baseUnit;
+    let divisions =  Unit / state.gridState.baseUnitDivisions ;
+    let offset = state.gridState.baseUnitOffset ;
 
-    let color = state.gridStore.baseUnitColor;
-    let opacity = state.gridStore.baseUnitVisibility;
+    let color = state.gridGeneral.baseUnitColor;
+    let opacity = state.gridGeneral.baseUnitVisibility;
+    let show = state.gridGeneral.baseUnitShow;
 
-    let points = ['0, '+(Unit-0.5), +(Unit-0.5)+', '+(Unit-0.5), +(Unit-0.5)+', -0.5'];
-    let points2 = ['0,'+(divisions-0.5),+(divisions-0.5)+','+(divisions-0.5),+(divisions-0.5)+',0'];
+    let points = ['0, ' + (Unit - 0.5), +(Unit - 0.5)+', '+(Unit - 0.5), +(Unit - 0.5)+', -0.5'];
+    let points2 = ['0,'+(divisions - 0.5),+(divisions - 0.5)+','+(divisions - 0.5),+(divisions - 0.5)+',0'];
 
     let style = {
-      width: state.gridStore.screenFake,
+      width: state.gridState.fakeScreen,
       height:'100vh',
       position: 'absolute',
+      zIndex:-30,
       left: '0',
       top: '0',
     }

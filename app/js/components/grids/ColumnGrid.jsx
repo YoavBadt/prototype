@@ -16,30 +16,30 @@ class ColumnGrid extends React.Component {
     const { store } = this.context;
     const state = store.getState();
 
-
-    let ColNum = state.gridStore.columnNumber;
+    let ColNum = state.gridState.columns;
     
-    let ColWidth = state.gridStore.columnWidth;
-    let GutWidth = state.gridStore.gutterWidth;
+    let ColWidth = state.gridState.columnWidth * state.gridState.baseLineHeight;
+    let GutWidth = state.gridState.gutterWidth * state.gridState.baseLineHeight;
     
     let columnPattern = ColWidth + GutWidth
     
-    
     let Stage = (ColNum * ColWidth) + ((ColNum * GutWidth)-GutWidth);
 
-    
-    let position = (state.gridStore.screenFake - Stage) / 2 //margin simulator
+    let position = (state.gridState.fakeScreen - Stage) / 2 //margin simulator
     let fix = (position % (ColWidth+GutWidth)) - 1
 
-    let Color = state.gridStore.columnColor;
-    let FillOpacity1 = "0";
-    let StrokeOpacity ="1";
+    let Color = state.gridGeneral.columnColor;
+    let opacity = state.gridGeneral.columnVisibility;
+    let show = state.gridGeneral.columnShow;
 
-    
+    let FillOpacity1 = "0";
+    let StrokeOpacity = opacity;
+
     let style = {
-      width: state.gridStore.screenFake,
+      width: state.gridState.fakeScreen,
       height:'100vh',
       position: 'absolute',
+      zIndex:-20,
       left: '0',
       top: '0',
     }

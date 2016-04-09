@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import NumInput from '../NumInput.jsx'
+import NumInput2 from '../NumInput2.jsx'
 
 import {
   columnNumberChange,
@@ -40,35 +40,25 @@ class ColumnGridControl extends React.Component {
     return (
       <div style={this.props.style}>
         <div style={style.section}>
-          <NumInput
+          <NumInput2
             name="Columns"
-            label={state.gridStore.columnNumber}
-            defaultValue={state.gridStore.columnNumber}
-            min="1"
-            max="18"
-            step="1" 
-            onChange={ (e) => store.dispatch(columnNumberChange(e.target.value)) }
+            label={state.gridState.columns}
+            plus={()=>store.dispatch(columnNumberChange(state.gridState.columns + 1))}
+            minus={()=>store.dispatch(columnNumberChange(state.gridState.columns - 1))}
           />
-          <NumInput
+          <NumInput2
             name="Column Width"
-            label={state.gridStore.columnWidth}
-            defaultValue={state.gridStore.columnWidth}
-            min="1"
-            max="5000"
-            step="1" 
-            onChange={ (e) => store.dispatch(columnWidthChange(e.target.value)) }
+            label={state.gridState.columnWidth}
+            plus={()=>store.dispatch(columnWidthChange(state.gridState.columnWidth + 0.25))}
+            minus={()=>store.dispatch(columnWidthChange(state.gridState.columnWidth - 0.25))}
           />
-          <NumInput
+          <NumInput2
             name="Gutter Width"
-            label={state.gridStore.gutterWidth}
-            defaultValue={state.gridStore.gutterWidth}
-            min="0"
-            max="1000"
-            step="1" 
-            onChange={ (e) => store.dispatch(gutterWidthChange(e.target.value)) }
+            label={state.gridState.gutterWidth}
+            plus={()=>store.dispatch(gutterWidthChange(state.gridState.gutterWidth + 0.25))}
+            minus={()=>store.dispatch(gutterWidthChange(state.gridState.gutterWidth - 0.25))}
           />
         </div>
-        <div style={{display: 'none'}}>{state.gridStore.gridPositions}</div>
       </div>
     )
   };

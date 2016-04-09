@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import RangeInput from '../RangeInput.jsx'
 
-import { ModularScaleChange } from '../../actions'
+import { ModularScaleChange } from '../../actions/gridStateActions.js'
 
 class ModularScaleControl extends React.Component {
   componentDidMount() {
@@ -52,19 +52,20 @@ class ModularScaleControl extends React.Component {
         <div style={style.section}>
           <RangeInput
             name="Modualr Scale"
-            label={state.gridStore.modularScale}
-            defaultvalue={state.gridStore.modularScale}
+            label={state.gridState.modularScale}
+            defaultvalue={state.gridState.modularScale}
             min="1.001" max="1.999" step="0.001"
             onChange={ (e) => store.dispatch(ModularScaleChange(e.target.value)) }
+            value={state.gridState.modularScale}
           />
           <ul style={style.ul}>
-          <li style={style.li}>{state.gridStore.scale[0]}</li>
-          <li style={style.li}>{state.gridStore.scale[1]}</li>
-          <li style={style.li}>{state.gridStore.scale[2]}</li>
-          <li style={style.li}>{state.gridStore.scale[3]}</li>
-          <li style={style.li}>{state.gridStore.scale[4]}</li>
-          <li style={style.li}>{state.gridStore.scale[5]}</li>
-          <li style={style.li}>{state.gridStore.scale[6]}</li>
+          <li style={style.li}>{state.gridState.scale[0]}</li>
+          <li style={style.li}>{state.gridState.scale[1]}</li>
+          <li style={style.li}>{state.gridState.scale[2]}</li>
+          <li style={style.li}>{state.gridState.scale[3]}</li>
+          <li style={style.li}>{state.gridState.scale[4]}</li>
+          <li style={style.li}>{state.gridState.scale[5]}</li>
+          <li style={style.li}>{state.gridState.scale[6]}</li>
           </ul>
         </div>
       </div>

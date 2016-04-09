@@ -1,7 +1,7 @@
 import React from 'react';
 import Radium from 'radium'
 
-class NumInput extends React.Component {
+class NumInput2 extends React.Component {
   render() {
   let size = this.props.size
   let style = {
@@ -83,7 +83,6 @@ class NumInput extends React.Component {
     <div style={style.wrapper}>
       <span style={style.name}>{this.props.name}</span>
       <div style={style.main}>
-      
       <span style={style.label}>{this.props.label}</span>
         <div style={style.buttoncontainer}>
           <button onClick={this.props.plus} style={style.button1}>+</button>
@@ -94,9 +93,9 @@ class NumInput extends React.Component {
   )
   };
 };
-NumInput = Radium(NumInput)
+NumInput2 = Radium(NumInput2)
 
-export default NumInput
+export default NumInput2
 
 
 

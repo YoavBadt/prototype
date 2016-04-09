@@ -2,8 +2,14 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import NumInput from '../NumInput.jsx'
+import NumInput2 from '../NumInput2.jsx'
 
-import { BaseUnitChange } from '../../actions'
+// import { BaseUnitChange } from '../../actions'
+
+import {
+  BaseUnitChange,
+  BaseUnitDivisionsChange,
+  BaseUnitOffsetChange } from '../../actions/gridStateActions.js'
 
 
 
@@ -38,32 +44,23 @@ class BaseUnitControl extends React.Component {
     return (
       <div style={this.props.style}>
         <div style={style.section}>
-          <NumInput
-            name="Base Unit"
-            label={state.gridStore.baseUnit}
-            defaultValue={state.gridStore.baseUnit}
-            min="4"
-            max="200"
-            step="2" 
-            onChange={ (e) => store.dispatch(BaseUnitChange(e.target.value)) }
+          <NumInput2
+          name="Base Unit"
+          label={state.gridState.baseUnit}
+          plus={()=>store.dispatch(BaseUnitChange(state.gridState.baseUnit + 2))}
+          minus={()=>store.dispatch(BaseUnitChange(state.gridState.baseUnit - 2))}
           />
-          <NumInput
+          <NumInput2
             name="Divisions"
-            label={state.gridStore.baseUnitDivisions}
-            defaultValue={state.gridStore.baseUnitDivisions}
-            min="1"
-            max="4"
-            step="1"
-            onChange={ (e) => store.dispatch(BaseUnitDivisionChange(e.target.value)) }
+            label={state.gridState.baseUnitDivisions}
+            plus={()=>store.dispatch(BaseUnitDivisionsChange(state.gridState.baseUnitDivisions + 1))}
+            minus={()=>store.dispatch(BaseUnitDivisionsChange(state.gridState.baseUnitDivisions - 1))}
           />
-          <NumInput
+          <NumInput2
             name="Offset"
-            label={state.gridStore.baseUnitOffset}
-            defaultValue={state.gridStore.baseUnitOffset}
-            min="0"
-            max="{state.gridStore.baseUnitOffset}"
-            step="1"
-            onChange={ (e) => store.dispatch(BaseUnitOffsetChange(e.target.value)) }
+            label={state.gridState.baseUnitOffset}
+            plus={()=>store.dispatch(BaseUnitOffsetChange(state.gridState.BaseUnitOffset + 1))}
+            minus={()=>store.dispatch(BaseUnitOffsetChange(state.gridState.BaseUnitOffset - 1))}
           />
         </div>
       </div>

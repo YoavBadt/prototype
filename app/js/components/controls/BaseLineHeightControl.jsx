@@ -1,10 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import NumInput from '../NumInput.jsx'
+import NumInput2 from '../NumInput2.jsx'
 
-import {BaseLineChange} from '../../actions'
-import {BaseLineDivisionsChange} from '../../actions'
+import {BaseLineChange,BaseLineDivisionsChange} from '../../actions/gridStateActions.js'
 
 class BaseLineHeightControl extends React.Component {
   componentDidMount() {
@@ -37,23 +36,17 @@ class BaseLineHeightControl extends React.Component {
     return (
       <div style={this.props.style}>
         <div style={style.section}>
-          <NumInput
+          <NumInput2
             name="Base Line Height"
-            label={state.gridStore.baseLineHeight}
-            defaultValue={state.gridStore.baseLineHeight}
-            min="4"
-            max="100"
-            step="2" 
-            onChange={ (e) => store.dispatch(BaseLineChange(e.target.value)) }
+            label={state.gridState.baseLineHeight}
+            plus={()=>store.dispatch(BaseLineChange(state.gridState.baseLineHeight + 1))}
+            minus={()=>store.dispatch(BaseLineChange(state.gridState.baseLineHeight - 1))}
           />
-          <NumInput
+          <NumInput2
             name="Divisions"
-            label={state.gridStore.baseLineDivisions}
-            defaultValue={state.gridStore.baseLineDivisions}
-            min="1"
-            max="4"
-            step="1" 
-            onChange={ (e) => store.dispatch(BaseLineDivisionsChange(e.target.value)) }
+            label={state.gridState.baseLineDivisions}
+            plus={()=>store.dispatch(BaseLineDivisionsChange(state.gridState.baseLineDivisions + 1))}
+            minus={()=>store.dispatch(BaseLineDivisionsChange(state.gridState.baseLineDivisions - 1))}
           />
         </div>
       </div>

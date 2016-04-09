@@ -47,8 +47,9 @@ class RangeInput extends React.Component {
           defaultvalue={this.props.defaultvalue}
           min={this.props.min}
           max={this.props.max}
-          step={this.props.step} 
+          step={this.props.step}
           onChange={this.props.onChange}
+          value={this.props.value}
         />
         <span style={style.label}>{this.props.label}</span>
       </div>
