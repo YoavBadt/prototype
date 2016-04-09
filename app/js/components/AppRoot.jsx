@@ -21,7 +21,7 @@ class Prototype extends React.Component {
       this.forceUpdate()
     );
 
-   store.dispatch(set1920())
+   store.dispatch(set720())
   }
   componentWillUnmount() {
     this.unsubscribe();

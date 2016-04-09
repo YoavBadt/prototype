@@ -32,8 +32,9 @@ class H3 extends React.Component {
       main : {
       fontSize : fontSize,
       lineHeight : lineHeight + 'px',
-      outline: '1px solid pink',
-      margin: 0,
+      background: 'rgba(255,0,0,0.05)',
+      marginTop: 0,
+      marginBottom: baseline,
       width:100+'%'
       },
       before : {

@@ -1,13 +1,14 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
+import NumInput from '../NumInput.jsx'
 import NumInput2 from '../NumInput2.jsx'
 
 import {
-  columnNumberChange,
+  columnChange,
   columnWidthChange,
   gutterWidthChange
-} from '../../actions'
+} from '../../actions/gridStateActions.js'
 
 class ColumnGridControl extends React.Component {
   componentDidMount() {
@@ -23,6 +24,7 @@ class ColumnGridControl extends React.Component {
     const props = this.props;
     const { store } = this.context;
     const state = store.getState();
+    let S = state.gridState;
     let style = {
       title : {
         lineHeight: 20+'px',
@@ -42,9 +44,9 @@ class ColumnGridControl extends React.Component {
         <div style={style.section}>
           <NumInput2
             name="Columns"
-            label={state.gridState.columns}
-            plus={()=>store.dispatch(columnNumberChange(state.gridState.columns + 1))}
-            minus={()=>store.dispatch(columnNumberChange(state.gridState.columns - 1))}
+            label={S.columns}
+            plus={()=>store.dispatch(columnChange(S.columns + 1))}
+            minus={()=>store.dispatch(columnChange(S.columns - 1))}
           />
           <NumInput2
             name="Column Width"

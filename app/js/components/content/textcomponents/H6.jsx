@@ -24,21 +24,22 @@ class H6 extends React.Component {
     const { store } = this.context;
     const state = store.getState();
 
-    let fontSize = state.gridState.scale[1];
-    let baseline = state.gridState.baseLineHeight;
-    let tolerance = baseline / state.gridState.baseLineDivisions;
-    let lineHeight = this.line(fontSize,baseline,tolerance);
+    let S = state.gridState;
+    let baseline = S.baseLineHeight;
+    
     let style = {
       main : {
-      fontSize : fontSize,
-      lineHeight : lineHeight + 'px',
-      outline: '1px solid pink',
+      fontSize : S.scale[1],
+      lineHeight : S.lines[1] + 'px',
+      background: 'rgba(255,0,0,0.05)',
+      marginTop: 0,
+      marginBottom: baseline,
       margin: 0,
       width:100+'%'
       },
       before : {
         content: '',
-        height : lineHeight,
+        height : S.lines[1],
         display: 'inline-block',
         verticalAlign : 'baseline'
       },

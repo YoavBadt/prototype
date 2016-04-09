@@ -1,13 +1,6 @@
-import {scaleCalculator, gridPositions} from './lib';
-
-// const stage = (columnNumber,columnWidth,gutterWidth) => {
-//   let stage = ( (columnNumber*columnWidth)+((columnNumber-1)*gutterWidth) );
-//   return stage
-// };
-
 export const gridGeneral = (
   state={
-    baseLineColor: 'red',
+    baseLineColor: 'blue',
     baseLineShow: true,
     baseLineVisibility: 0.5,
     baseUnitColor: 'black',

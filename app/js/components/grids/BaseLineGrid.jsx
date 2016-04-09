@@ -16,9 +16,11 @@ class BaseLineGrid extends React.Component {
     const { store } = this.context;
     const state = store.getState();
 
-    let baseline = state.gridState.baseLineHeight;
-    let baselinediv = baseline / state.gridState.baseLineDivisions
- 
+    let S = state.gridState;
+    
+    let baseline = S.baseLineHeight;
+    let baselinediv = baseline / S.baseLineDivisions
+
     let color = state.gridGeneral.baseLineColor;
     let opacity = state.gridGeneral.baseLineVisibility;
     let show = state.gridGeneral.baseLineShow;
@@ -26,7 +28,8 @@ class BaseLineGrid extends React.Component {
     let style = {
       base: {
         width: state.gridState.fakeScreen,
-        height:'100vh',
+        minHeight:'100vh',
+        height: 100+'%',
         position: 'absolute',
         zIndex:-10,
         left: '0',
@@ -41,14 +44,14 @@ class BaseLineGrid extends React.Component {
         <svg style={style.base}>
           <defs>
             <pattern id="Division" x="0" y="0" width="100%" height={baselinediv} patternUnits="userSpaceOnUse">
-              <line strokeWidth="1" stroke={color} strokeOpacity={opacity} x1="0" x2="100%" y1={baselinediv-0.5} y2={baselinediv-0.5} strokeDasharray="1,1"/>
+              <line strokeWidth="1" stroke={color} strokeOpacity={opacity/2} x1="0" x2="100%" y1={baselinediv-0.5} y2={baselinediv-0.5} strokeDasharray="1,1"/>
             </pattern>
             <pattern id="baselinePattern" x="0" y="0" width="100%" height={baseline} patternUnits="userSpaceOnUse">
-            <line strokeWidth="1" stroke={color} strokeOpacity={opacity} x1="0" x2="100%" y1={baseline-0.5} y2={baseline-0.5} />
+            <line strokeWidth="1" stroke={color} strokeOpacity={opacity} x1="0" x2="100%" y1={baseline-0.5} y2={baseline-0.5} strokeDasharray="1,1"/>
               <rect x="0" y="0" width="100%" height={baseline} fillOpacity="1"  strokeOpacity="0" fill="url(#Division)"/>
             </pattern>
           </defs>
-            <rect  x="0" y="0" width="100%" height="100%" fill="url(#baselinePattern)" fillOpacity="1" />
+            <rect  x={S.margin} y="0" width={S.stage} height="100%" fill="url(#baselinePattern)" fillOpacity="1" />
         </svg>
     </div>
     )

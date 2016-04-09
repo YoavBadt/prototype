@@ -25,6 +25,7 @@ class NumInput extends React.Component {
         min={this.props.min}
         max={this.props.max}
         step={this.props.step}
+        value={this.props.value}
         onChange={this.props.onChange}
       />
     </div>
@@ -36,7 +37,17 @@ NumInput = Radium(NumInput)
 export default NumInput
 
 
-
+//how to use : 
+//<NumInput
+//name="Columns"
+//label={S.columns}
+//defaultValue={S.columns}
+//value={S.columns}
+//onChange={(e)=>store.dispatch(columnChange(e.target.value))}
+//min={1}
+//max={20}
+//step={1}
+///>
 
 
 

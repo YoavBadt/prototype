@@ -1,6 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
+import ArrowHorizontal from './ArrowHorizontal.jsx'
+
 class ColumnGrid extends React.Component {
   componentDidMount() {
     const { store } = this.context;
@@ -15,18 +17,18 @@ class ColumnGrid extends React.Component {
     const props = this.props;
     const { store } = this.context;
     const state = store.getState();
+    let S = state.gridState;
 
-    let ColNum = state.gridState.columns;
+    let ColNum = S.columns;
     
-    let ColWidth = state.gridState.columnWidth * state.gridState.baseLineHeight;
-    let GutWidth = state.gridState.gutterWidth * state.gridState.baseLineHeight;
-    
+    let ColWidth = S.columnWidthPx;
+    let GutWidth = S.gutterWidthPx;
     let columnPattern = ColWidth + GutWidth
     
-    let Stage = (ColNum * ColWidth) + ((ColNum * GutWidth)-GutWidth);
-
-    let position = (state.gridState.fakeScreen - Stage) / 2 //margin simulator
-    let fix = (position % (ColWidth+GutWidth)) - 1
+    let Stage = S.stage;
+    let Position = S.margin;
+    // let Position = (S.fakeScreen - Stage) / 2 //margin simulator
+    let fix = (Position % (columnPattern)) - 1
 
     let Color = state.gridGeneral.columnColor;
     let opacity = state.gridGeneral.columnVisibility;
@@ -37,7 +39,8 @@ class ColumnGrid extends React.Component {
 
     let style = {
       width: state.gridState.fakeScreen,
-      height:'100vh',
+      minHeight:'100vh',
+      height: 100+'%',
       position: 'absolute',
       zIndex:-20,
       left: '0',
@@ -79,7 +82,9 @@ class ColumnGrid extends React.Component {
               
           </pattern>
         </defs>
-        <rect  x={position-1} y="0" width={Stage+3} height="100%" fill="url(#ColumnPattern)" fillOpacity="1"></rect>
+        <rect  x={Position-1} y="0" width={Stage+3} height="100%" fill="url(#ColumnPattern)" fillOpacity="1"></rect>
+        
+        
       </svg>
     </div>
     )

@@ -32,7 +32,9 @@ class P extends React.Component {
       main : {
       fontSize : fontSize,
       lineHeight : lineHeight + 'px',
-      outline: '1px solid pink',
+      background: 'rgba(255,0,0,0.05)',
+      marginTop: 0,
+      marginBottom: baseline,
       margin: 0,
       width:100+'%'
       },

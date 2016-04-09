@@ -15,10 +15,12 @@ class BaseGrid extends React.Component {
     const props = this.props;
     const { store } = this.context;
     const state = store.getState();
+    let S = state.gridState;
 
-    let Unit = state.gridState.baseUnit;
-    let divisions =  Unit / state.gridState.baseUnitDivisions ;
-    let offset = state.gridState.baseUnitOffset ;
+    let Unit = S.baseUnit;
+    let divisions =  Unit / S.baseUnitDivisions ;
+    
+    let offset = S.baseUnitOffset ;
 
     let color = state.gridGeneral.baseUnitColor;
     let opacity = state.gridGeneral.baseUnitVisibility;
@@ -29,7 +31,8 @@ class BaseGrid extends React.Component {
 
     let style = {
       width: state.gridState.fakeScreen,
-      height:'100vh',
+      minHeight:'100vh',
+      height: 100+'%',
       position: 'absolute',
       zIndex:-30,
       left: '0',
@@ -39,15 +42,47 @@ class BaseGrid extends React.Component {
       <div>
       <svg style={style}>
         <defs>
-          <pattern id="D_Pattern" x="0" y="0" width={divisions} height={divisions} patternUnits="userSpaceOnUse">
-            <polyline points={points2} stroke={color} fillOpacity="0" strokeOpacity={opacity/4} strokeWidth="1" />
+          <pattern
+            id="D_Pattern"
+            x="0" y="0"
+            width={divisions}
+            height={divisions}
+            patternUnits="userSpaceOnUse"
+            >
+              <polyline
+                points={points2}
+                stroke={color}
+                fillOpacity="0"
+                strokeOpacity={opacity/2}
+                strokeWidth="1"
+                />
           </pattern>
-          <pattern id="Pattern" x={offset} y="0" width={Unit} height={Unit} patternUnits="userSpaceOnUse">
-            <polyline points={points} stroke={color} fillOpacity="0" strokeOpacity={opacity/2} strokeWidth="1" />
-            <rect  x="0" y="0" width={Unit} height={Unit} fill="url(#D_Pattern)" fillOpacity="1"></rect>
+          <pattern
+            id="Pattern"
+            x={offset} y="0"
+            width={Unit} height={Unit}
+            patternUnits="userSpaceOnUse"
+            >
+            <polyline
+              points={points}
+              stroke={color}
+              fillOpacity="0"
+              strokeOpacity={opacity/2}
+              strokeWidth="1"
+              />
+            <rect
+              x="0" y="0"
+              width={Unit} height={Unit}
+              fill="url(#D_Pattern)"
+              fillOpacity="1" />
           </pattern>
         </defs>
-        <rect  x="0" y="0" width="100%" height="100%" fill="url(#Pattern)" fillOpacity="1"></rect>
+        <rect
+          x="0" y="0"
+          width="100%" height="100%"
+          fill="url(#Pattern)"
+          fillOpacity="1">
+        </rect>
       </svg>
     </div>
     )

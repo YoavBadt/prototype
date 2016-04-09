@@ -15,7 +15,7 @@ class Info extends React.Component {
     const props = this.props;
     const { store } = this.context;
     const state = store.getState();
-
+    let S = state.gridState;
 
     let style = {
       main : {
@@ -35,7 +35,12 @@ class Info extends React.Component {
     return (
       <div style={style.main}>
       <ul>
-      
+      <li>screen : {S.fakeScreen}</li>
+      <li>stage : {S.stage}</li>
+      <li>margin : {S.margin}</li>
+      <li>column width : {S.columnWidthPx}</li>
+      <li>gutter width : {S.gutterWidthPx}</li>
+      <li>base unit offset : {S.baseUnitOffset}</li>
       </ul>
       </div>
     )

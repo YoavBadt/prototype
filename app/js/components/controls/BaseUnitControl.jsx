@@ -4,12 +4,7 @@ import { connect } from 'react-redux';
 import NumInput from '../NumInput.jsx'
 import NumInput2 from '../NumInput2.jsx'
 
-// import { BaseUnitChange } from '../../actions'
-
-import {
-  BaseUnitChange,
-  BaseUnitDivisionsChange,
-  BaseUnitOffsetChange } from '../../actions/gridStateActions.js'
+import { BaseUnitChange, BaseUnitDivisionsChange, BaseUnitOffsetChange } from '../../actions/gridStateActions.js'
 
 
 

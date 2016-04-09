@@ -68,6 +68,7 @@ export const BaseUnitDivisionsChange = (payload) => {
   };
 };
 export const BaseUnitOffsetChange = (payload) => {
+  console.log('action');
   payload = Number(payload)
   return {
     type: 'BASE_UNIT_OFFSET_CHANGE',
@@ -75,7 +76,7 @@ export const BaseUnitOffsetChange = (payload) => {
   };
 };
 
-export const columnsChange = (payload) => {
+export const columnChange = (payload) => {
   payload = Number(payload)
   return {
     type: 'COLUMN_CHANGE',

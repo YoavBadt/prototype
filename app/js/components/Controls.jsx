@@ -11,10 +11,10 @@ class Controls extends React.Component {
   render() {
     let style = {
       main : {
-      position: 'absolute',
+      position: 'fixed',
       zIndex: 1000,
-      top: 20,
-      left: 20,
+      top: 40,
+      left: 40,
       background: 'rgba(255,255,255,1)',
       border: '1px red solid',
       width: 220,

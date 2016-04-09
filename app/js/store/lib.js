@@ -1,3 +1,26 @@
+export const stageCalculator = (screen,columnNumber,columnWidth,gutterWidth) => {
+  let stage = ( (columnNumber*columnWidth)+((columnNumber-1)*gutterWidth) );
+  let margin = (screen - stage) / 2;
+  let stageCal = {
+    stage: stage,
+    margin: margin
+  }
+  return stageCal
+};
+
+export const lineCalculator = (basefontSize,modscale,baseLine,divisions) =>{
+  let lines = []
+  let tolerance = baseLine / divisions
+  let fontsize = scaleCalculator(basefontSize,modscale);
+  for(let i=0; i < 7; i++){
+    if(i === 0){
+      lines.push(baseLine);
+    }else{
+      lines.push((Math.floor(fontsize[i]/tolerance)*tolerance)+tolerance);
+    }
+  }
+  return lines;
+};
 
 export const scaleCalculator = (baseFontSize,modularScale) => {
   let scale =[];
