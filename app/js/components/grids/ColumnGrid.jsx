@@ -23,12 +23,12 @@ class ColumnGrid extends React.Component {
     
     let ColWidth = S.columnWidthPx;
     let GutWidth = S.gutterWidthPx;
-    let columnPattern = ColWidth + GutWidth
+    let columnPattern = S.columnWidthPx + S.gutterWidthPx
     
     let Stage = S.stage;
     let Position = S.margin;
-    // let Position = (S.fakeScreen - Stage) / 2 //margin simulator
-    let fix = (Position % (columnPattern)) - 1
+
+    let fix = (S.margin % (S.columnWidthPx + S.gutterWidthPx)) - 1
 
     let Color = state.gridGeneral.columnColor;
     let opacity = state.gridGeneral.columnVisibility;
@@ -83,8 +83,6 @@ class ColumnGrid extends React.Component {
           </pattern>
         </defs>
         <rect  x={Position-1} y="0" width={Stage+3} height="100%" fill="url(#ColumnPattern)" fillOpacity="1"></rect>
-        
-        
       </svg>
     </div>
     )

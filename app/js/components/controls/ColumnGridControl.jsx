@@ -36,7 +36,12 @@ class ColumnGridControl extends React.Component {
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'space-between',
-        alignItems: 'flex-end '
+        alignItems: 'flex-start '
+      },
+      label : {
+        fontSize: 10,
+        lineHeight: 10 + 'px',
+        marginBottom: 10
       }
     }
     return (
@@ -50,16 +55,18 @@ class ColumnGridControl extends React.Component {
           />
           <NumInput2
             name="Column Width"
-            label={state.gridState.columnWidth}
-            plus={()=>store.dispatch(columnWidthChange(state.gridState.columnWidth + 0.25))}
-            minus={()=>store.dispatch(columnWidthChange(state.gridState.columnWidth - 0.25))}
+            label={S.columnWidthPx}
+            plus={()=>store.dispatch(columnWidthChange(S.columnWidthPx + 1))}
+            minus={()=>store.dispatch(columnWidthChange(S.columnWidthPx - 1))}
           />
+          <label style={style.label}>columns width baseline ratio : {S.columnWidth.toFixed(2)}</label>
           <NumInput2
             name="Gutter Width"
-            label={state.gridState.gutterWidth}
-            plus={()=>store.dispatch(gutterWidthChange(state.gridState.gutterWidth + 0.25))}
-            minus={()=>store.dispatch(gutterWidthChange(state.gridState.gutterWidth - 0.25))}
+            label={S.gutterWidthPx}
+            plus={()=>store.dispatch(gutterWidthChange(S.gutterWidthPx + 1))}
+            minus={()=>store.dispatch(gutterWidthChange(S.gutterWidthPx - 1))}
           />
+          <label style={style.label}>gutter width baseline ratio : {S.gutterWidth.toFixed(2)}</label>
         </div>
       </div>
     )

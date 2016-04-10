@@ -23,8 +23,8 @@ let state_320 = {
     baseFontSize: 16,
     modularScale: 1.3,
     baseLineHeight: 24,
-    baseLineDivisions: 2,
-    lines: lineCalculator(16,1.3,24,2),
+    baseLineDivisions: 1,
+    lines: lineCalculator(16,1.3,24,1),
     scale: scaleCalculator(16,1.3),
     baseUnit: 24,
     baseUnitOffset: 0,
@@ -84,7 +84,7 @@ let state_1920 = {
     baseUnit: 32,
     baseUnitOffset: 0,
     baseUnitDivisions: 2,
-    lines: lineCalculator(22,1.285,32,2),
+    lines: lineCalculator(22,1.285,32,1),
     scale: scaleCalculator(22,1.285),
     columns: 12,
     columnWidth: 4,
@@ -102,8 +102,8 @@ export const gridState = (
     baseFontSize: 22,
     modularScale: 1.285,
     baseLineHeight: 32,
-    baseLineDivisions: 2,
-    lines: lineCalculator(22,1.285,32,2),
+    baseLineDivisions: 1,
+    lines: lineCalculator(22,1.285,32,1),
     scale: scaleCalculator(22,1.285),
     baseUnit: 32,
     baseUnitOffset: 0,
@@ -170,8 +170,8 @@ export const gridState = (
             ...state,
             baseLineHeight: action.payload,
             lines: lineCalculator(state.baseFontSize,state.modularScale,action.payload,state.baseLineDivisions),
-            columnWidthPx : action.payload * state.columnWidth,
-            gutterWidthPx : action.payload * state.gutterWidth
+            columnWidth : state.columnWidthPx / action.payload,
+            gutterWidth : state.gutterWidthPx / action.payload
         };
     case 'BASELINE_DIVISIONS_CHANGE':
         return {
@@ -205,19 +205,18 @@ export const gridState = (
     case 'COLUMN_WIDTH_CHANGE':
       return {
         ...state,
-        columnWidth : action.payload,
-        columnWidthPx : action.payload * state.baseLineHeight,
-        stage: stageCalculator(state.fakeScreen,state.columns,action.payload * state.baseLineHeight,state.gutterWidthPx).stage,
-
-        margin: stageCalculator(state.fakeScreen,state.columns,action.payload * state.baseLineHeight,state.gutterWidthPx).margin
+        columnWidthPx : action.payload,
+        columnWidth : action.payload/state.baseLineHeight,
+        stage: stageCalculator(state.fakeScreen,state.columns,action.payload,state.gutterWidthPx).stage,
+        margin: stageCalculator(state.fakeScreen,state.columns,action.payload,state.gutterWidthPx).margin
       };
     case 'GUTTER_WIDTH_CHANGE':
       return {
         ...state,
-        gutterWidth : action.payload,
-        gutterWidthPx : action.payload * state.baseLineHeight,
-        stage: stageCalculator(state.fakeScreen,state.columns,state.baseLineHeightPx,action.payload * state.baseLineHeight).stage,
-        margin: stageCalculator(state.fakeScreen,state.columns,state.baseLineHeightPx,action.payload * state.baseLineHeight).margin
+        gutterWidthPx : action.payload,
+        gutterWidth : action.payload/state.baseLineHeight,
+        stage: stageCalculator(state.fakeScreen,state.columns,state.columnWidthPx,action.payload).stage,
+        margin: stageCalculator(state.fakeScreen,state.columns,state.columnWidthPx,action.payload).margin
       };
     default:
       return state;

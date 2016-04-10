@@ -2,14 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 class H6 extends React.Component {
-  constructor(){
-    super();
-    this.line = this.line.bind(this);
-  }
-  line(fontsize,baseline,tolerance){
-  var lineHeight2 = (Math.floor(fontsize/tolerance)*tolerance)+tolerance;
-  return lineHeight2;
-  }
   componentDidMount() {
     const { store } = this.context;
     this.unsubscribe = store.subscribe(() =>
@@ -23,30 +15,35 @@ class H6 extends React.Component {
     const props = this.props;
     const { store } = this.context;
     const state = store.getState();
-
     let S = state.gridState;
-    let baseline = S.baseLineHeight;
+    
+    let fontSize = S.scale[1];
+    let baseline = state.gridState.baseLineHeight;
+    let lineHeight = S.lines[1];
     
     let style = {
       main : {
-      fontSize : S.scale[1],
-      lineHeight : S.lines[1] + 'px',
+      fontSize : fontSize,
+      lineHeight : lineHeight + 'px',
       background: 'rgba(255,0,0,0.05)',
-      marginTop: 0,
-      marginBottom: baseline,
       margin: 0,
       width:100+'%'
       },
       before : {
-        content: '',
-        height : S.lines[1],
+        height : lineHeight,
         display: 'inline-block',
-        verticalAlign : 'baseline'
+        verticalAlign : 'baseline',
+        width: 10,
+        borderTop: '1px solid red',
+        borderLeft: '1px solid red',
+        borderBottom: '1px solid red',
+        marginRight:-10,
+        boxSizing: 'border-box'
       },
       after : {
         content: '',
         display: 'inline-block',
-        verticalAlign: baseline * -1,
+        verticalAlign:  (Math.ceil((lineHeight/baseline)/2)*baseline) * -1,
         height: baseline,
       }
     }

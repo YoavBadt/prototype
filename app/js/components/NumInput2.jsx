@@ -76,6 +76,7 @@ class NumInput2 extends React.Component {
       marginBottom: 10
     },
     name:{
+      fontSize: 16,
       lineHeight: 30+'px',
     }
   }

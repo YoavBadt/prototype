@@ -25,24 +25,27 @@ class P extends React.Component {
     const state = store.getState();
 
     let fontSize = state.gridState.scale[0];
+    let lineHeight = state.gridState.lines[0];
     let baseline = state.gridState.baseLineHeight;
-    let tolerance = baseline / state.gridState.baseLineDivisions;
-    let lineHeight = this.line(fontSize,baseline,tolerance);
+    
     let style = {
       main : {
       fontSize : fontSize,
       lineHeight : lineHeight + 'px',
       background: 'rgba(255,0,0,0.05)',
-      marginTop: 0,
-      marginBottom: baseline,
-      margin: 0,
+      margin:0,
       width:100+'%'
       },
       before : {
-        content: '',
         height : lineHeight,
         display: 'inline-block',
-        verticalAlign : 'baseline'
+        verticalAlign : 'baseline',
+        width: 10,
+        borderTop: '1px solid red',
+        borderLeft: '1px solid red',
+        borderBottom: '1px solid red',
+        marginRight:-10,
+        boxSizing: 'border-box'
       },
       after : {
         content: '',

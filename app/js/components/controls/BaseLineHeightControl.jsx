@@ -19,6 +19,7 @@ class BaseLineHeightControl extends React.Component {
     const props = this.props;
     const { store } = this.context;
     const state = store.getState();
+    let S = state.gridState;
     let style = {
       title : {
         lineHeight: 20+'px',
@@ -38,7 +39,7 @@ class BaseLineHeightControl extends React.Component {
         <div style={style.section}>
           <NumInput2
             name="Base Line Height"
-            label={state.gridState.baseLineHeight}
+            label={S.baseLineHeight}
             plus={()=>store.dispatch(BaseLineChange(state.gridState.baseLineHeight + 1))}
             minus={()=>store.dispatch(BaseLineChange(state.gridState.baseLineHeight - 1))}
           />
