@@ -6,6 +6,9 @@ import {gridState} from './gridState';
 const protoType = combineReducers({
   gridGeneral,
   gridState,
+
 });
 
-export default createStore(protoType)
+export default createStore(protoType,{},
+window.devToolsExtension ? window.devToolsExtension() : undefined
+  )

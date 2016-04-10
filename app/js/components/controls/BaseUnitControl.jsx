@@ -51,11 +51,12 @@ class BaseUnitControl extends React.Component {
             plus={()=>store.dispatch(BaseUnitDivisionsChange(state.gridState.baseUnitDivisions + 1))}
             minus={()=>store.dispatch(BaseUnitDivisionsChange(state.gridState.baseUnitDivisions - 1))}
           />
+          
           <NumInput2
             name="Offset"
             label={state.gridState.baseUnitOffset}
-            plus={()=>store.dispatch(BaseUnitOffsetChange(state.gridState.BaseUnitOffset + 1))}
-            minus={()=>store.dispatch(BaseUnitOffsetChange(state.gridState.BaseUnitOffset - 1))}
+            plus={(e)=>store.dispatch(BaseUnitOffsetChange(state.gridState.baseUnitOffset + 1))}
+            minus={(e)=>store.dispatch(BaseUnitOffsetChange(state.gridState.baseUnitOffset - 1))}
           />
         </div>
       </div>
@@ -70,3 +71,14 @@ BaseUnitControl.contextTypes = {
 BaseUnitControl = connect()(BaseUnitControl)
 
 export default BaseUnitControl
+
+// <NumInput
+// name="Offset 2"
+// label={state.gridState.baseUnitOffset}
+// defaultValue={state.gridState.baseUnitOffset}
+// value={state.gridState.baseUnitOffset}
+// onChange={(e)=>store.dispatch(BaseUnitOffsetChange(e.target.value))}
+// max={state.gridState.baseUnit}
+// min={0}
+// step={1}
+// />
