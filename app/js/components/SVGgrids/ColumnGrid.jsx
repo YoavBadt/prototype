@@ -2,6 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import ArrowHorizontal from './ArrowHorizontal.jsx'
+import Radium from 'radium'
+
 
 class ColumnGrid extends React.Component {
   componentDidMount() {
@@ -38,6 +40,7 @@ class ColumnGrid extends React.Component {
     let StrokeOpacity = opacity;
 
     let style = {
+      base:{
       width: state.gridState.fakeScreen,
       minHeight:'100vh',
       height: 100+'%',
@@ -45,10 +48,11 @@ class ColumnGrid extends React.Component {
       zIndex:-20,
       left: '0',
       top: '0',
+      }
     }
     return (
       <div>
-      <svg style={style}>
+      <svg style={[style.base,show ? {display:''} : {display:'none'} ]}>
         <defs>
           <pattern
             id="ColumnPattern"
@@ -72,7 +76,7 @@ class ColumnGrid extends React.Component {
               <line
               strokeWidth="1"
               stroke={Color}
-              strokeOpacity={StrokeOpacity}
+              strokeOpacity="0"
               x1={(ColWidth+(GutWidth/2)) + 0.5}
               x2={(ColWidth+(GutWidth/2)) + 0.5}
               y1="0"
@@ -92,7 +96,7 @@ class ColumnGrid extends React.Component {
 ColumnGrid.contextTypes = {
     store: React.PropTypes.object
   }
-
+ColumnGrid = Radium(ColumnGrid)
 ColumnGrid = connect()(ColumnGrid)
 
 export default ColumnGrid

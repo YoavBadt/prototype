@@ -3,12 +3,15 @@ import { connect } from 'react-redux';
 
 import NumInput from '../NumInput.jsx'
 import NumInput2 from '../NumInput2.jsx'
+import Switch from '../Switch.jsx'
 
 import {
   columnChange,
   columnWidthChange,
   gutterWidthChange
 } from '../../actions/gridStateActions.js'
+
+import {ColumnShow} from '../../actions/gridGeneralActions.js'
 
 class ColumnGridControl extends React.Component {
   componentDidMount() {
@@ -45,7 +48,7 @@ class ColumnGridControl extends React.Component {
       }
     }
     return (
-      <div style={this.props.style}>
+      <div>
         <div style={style.section}>
           <NumInput2
             name="Columns"
@@ -67,6 +70,15 @@ class ColumnGridControl extends React.Component {
             minus={()=>store.dispatch(gutterWidthChange(S.gutterWidthPx - 1))}
           />
           <label style={style.label}>gutter width baseline ratio : {S.gutterWidth.toFixed(2)}</label>
+          <Switch 
+          name="Show"
+          defaultValue={state.gridGeneral.columnShow}
+          value={state.gridGeneral.columnShow}
+          onChange={(e)=>store.dispatch(ColumnShow(state.gridGeneral.columnShow))}
+          />
+          <label style={style.label}>screen : {S.fakeScreen}</label>
+          <label style={style.label}>stage : {S.stage}</label>
+          <label style={style.label}>margin : {S.margin}</label>
         </div>
       </div>
     )

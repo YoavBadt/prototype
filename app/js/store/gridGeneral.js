@@ -4,11 +4,11 @@ export const gridGeneral = (
     baseLineShow: true,
     baseLineVisibility: 0.5,
     baseUnitColor: 'black',
-    baseUnitShow : true,
-    baseUnitVisibility: 0,
+    baseUnitShow : false,
+    baseUnitVisibility: 0.5,
     columnColor: 'blue',
     columnShow: true,
-    columnVisibility: 0.1,
+    columnVisibility: 0.5,
   },
   action
   )=>{
@@ -16,17 +16,17 @@ export const gridGeneral = (
     case 'BASE_LINE_SHOW':
       return{
         ...state,
-        baseLineShow: action.payload
+        baseLineShow: !action.payload
       };
     case 'BASE_UNIT_SHOW':
       return{
         ...state,
-        baseUnitShow: action.payload
+        baseUnitShow: !action.payload
       };
     case 'COLUMN_SHOW':
       return{
         ...state,
-        columnShow: action.payload
+        columnShow: !action.payload
       };
     default:
       return state;

@@ -36,7 +36,7 @@ class BaseFontSizeControl extends React.Component {
       }
     }
     return (
-      <div style={this.props.style}>
+      <div>
         <div style={style.section}>
           <NumInput2
             name="Base Font Size"

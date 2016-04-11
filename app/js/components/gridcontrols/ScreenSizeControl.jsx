@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import { set320,set720,set1440,set1920 } from '../../actions/gridStateActions.js'
+import ButtonR from '../ButtonR.jsx'
 
 class ScreenSizeControl extends React.Component {
   componentDidMount() {
@@ -14,6 +15,11 @@ class ScreenSizeControl extends React.Component {
     this.unsubscribe();
   }
   render() {
+    const props = this.props;
+    const { store } = this.context;
+    const state = store.getState();
+
+    let S = state.gridState;
     let style = {
       main:{
         boxSizing: 'border-box',
@@ -24,16 +30,8 @@ class ScreenSizeControl extends React.Component {
         display: 'flex',
         flexDirection: 'row',
         justifyContent: 'space-between',
-        alignItems: 'flex-start'
-      },
-      button:{
-        margin:0,
-        background: 'rgba(255,255,255,0.9)',
-        border:'none',
-        width: 25+'%',
+        alignItems: 'flex-start',
         height: 40,
-        color: 'red',
-        fontFamily: 'monospace'
       },
       vr:{
         margin:0,
@@ -44,45 +42,40 @@ class ScreenSizeControl extends React.Component {
         background: 'red',
       }
     }
-    const props = this.props;
-    const { store } = this.context;
-    const state = store.getState();
-    let active = state.gridState.currentState;
     return(
       <div style={style.main}>
-        
         <div style={style.section}>
-        <button
-          style={style.button}
+        <ButtonR 
           value='state_320'
           onClick={(e) => store.dispatch(set320())}
-        >
-        320
-        </button>
+          text="320"
+          check={S.currentState}
+          width={25+'%'}
+        />
         <hr style={style.vr}/>
-        <button 
-          style={style.button}
+        <ButtonR 
           value='state_720'
           onClick={(e) => store.dispatch(set720())}
-        >
-        720
-        </button>
+          text="720"
+          check={S.currentState}
+          width={25+'%'}
+        />
         <hr style={style.vr}/>
-        <button 
-          style={style.button}
+        <ButtonR 
           value='state_1440'
           onClick={(e) => store.dispatch(set1440())}
-        >
-        1440
-        </button>
+          text="1440"
+          check={S.currentState}
+          width={25+'%'}
+        />
         <hr style={style.vr}/>
-        <button 
-          style={style.button}
+        <ButtonR 
           value='state_1920'
           onClick={(e) => store.dispatch(set1920())}
-        >
-        1920
-        </button>
+          text="1920"
+          check={S.currentState}
+          width={25+'%'}
+        />
         </div>
       </div>
     )
@@ -92,8 +85,7 @@ class ScreenSizeControl extends React.Component {
 
 ScreenSizeControl.contextTypes = {
     store: React.PropTypes.object
-  }
-
-ScreenSizeControl = connect()(ScreenSizeControl)
+  };
+ScreenSizeControl = connect()(ScreenSizeControl);
 
 export default ScreenSizeControl

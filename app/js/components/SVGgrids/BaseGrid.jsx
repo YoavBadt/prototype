@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import Radium from 'radium';
 
 class BaseGrid extends React.Component {
   componentDidMount() {
@@ -30,17 +31,19 @@ class BaseGrid extends React.Component {
     let points2 = ['0,'+(divisions - 0.5),+(divisions - 0.5)+','+(divisions - 0.5),+(divisions - 0.5)+',0'];
 
     let style = {
-      width: state.gridState.fakeScreen,
+      base: {
+      width: S.fakeScreen,
       minHeight:'100vh',
       height: 100+'%',
       position: 'absolute',
       zIndex:-30,
       left: '0',
       top: '0',
+      }
     }
     return (
       <div>
-      <svg style={style}>
+      <svg style={[style.base,show ? {display:''} : {display:'none'} ]}>
         <defs>
           <pattern
             id="D_Pattern"
@@ -55,6 +58,7 @@ class BaseGrid extends React.Component {
                 fillOpacity="0"
                 strokeOpacity={opacity/2}
                 strokeWidth="1"
+                strokeDasharray="1,1"
                 />
           </pattern>
           <pattern
@@ -69,6 +73,7 @@ class BaseGrid extends React.Component {
               fillOpacity="0"
               strokeOpacity={opacity/2}
               strokeWidth="1"
+              strokeDasharray="1,1"
               />
             <rect
               x="0" y="0"
@@ -92,7 +97,7 @@ class BaseGrid extends React.Component {
 BaseGrid.contextTypes = {
     store: React.PropTypes.object
   }
-
+BaseGrid = Radium(BaseGrid);
 BaseGrid = connect()(BaseGrid)
 
 export default BaseGrid

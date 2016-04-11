@@ -1,14 +1,14 @@
-export const modScaleComponent = (
+export const pageState = (
   state={
-    width: 200,
+    currentPage: 'Modular_Scale',
   },
   action
   )=>{
   switch (action.type) {
-    case 'SET_MODULAR_COMPONENT_WIDTH':
+    case 'CHANGE_PAGE':
       return{
         ...state,
-        width : action.payload
+        currentPage: action.payload
       };
     default:
       return state;

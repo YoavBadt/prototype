@@ -5,9 +5,9 @@ import { connect } from 'react-redux'
 
 import { set320, set720, set1440, set1920 } from '../actions/gridStateActions.js'
 
-import Controls from './Controls.jsx';
+import Menu from './content/Menu.jsx'
+import Controls from './gridcontrols/Controls.jsx';
 import Wrapper from './Wrapper.jsx';
-import Info from './Info.jsx';
 
 import store from '../store';
 
@@ -29,8 +29,8 @@ class Prototype extends React.Component {
   render() {
     return (
       <div>
+        <Menu />
         <Controls />
-        <Info />
         <Wrapper />
       </div>
     )

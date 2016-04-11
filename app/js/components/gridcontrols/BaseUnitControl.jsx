@@ -3,8 +3,11 @@ import { connect } from 'react-redux';
 
 import NumInput from '../NumInput.jsx'
 import NumInput2 from '../NumInput2.jsx'
+import  Switch from '../Switch.jsx'
 
 import { BaseUnitChange, BaseUnitDivisionsChange, BaseUnitOffsetChange } from '../../actions/gridStateActions.js'
+
+import {BaseUnitShow} from '../../actions/gridGeneralActions.js'
 
 
 
@@ -37,7 +40,7 @@ class BaseUnitControl extends React.Component {
       }
     }
     return (
-      <div style={this.props.style}>
+      <div>
         <div style={style.section}>
           <NumInput2
           name="Base Unit"
@@ -51,12 +54,17 @@ class BaseUnitControl extends React.Component {
             plus={()=>store.dispatch(BaseUnitDivisionsChange(state.gridState.baseUnitDivisions + 1))}
             minus={()=>store.dispatch(BaseUnitDivisionsChange(state.gridState.baseUnitDivisions - 1))}
           />
-          
           <NumInput2
             name="Offset"
             label={state.gridState.baseUnitOffset}
             plus={(e)=>store.dispatch(BaseUnitOffsetChange(state.gridState.baseUnitOffset + 1))}
             minus={(e)=>store.dispatch(BaseUnitOffsetChange(state.gridState.baseUnitOffset - 1))}
+          />
+          <Switch
+          name="Show"
+          defaultValue={state.gridGeneral.baseUnitShow}
+          value={state.gridGeneral.baseUnitShow}
+          onChange={(e)=>store.dispatch(BaseUnitShow(state.gridGeneral.baseUnitShow))}
           />
         </div>
       </div>

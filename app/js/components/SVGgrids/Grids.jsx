@@ -1,8 +1,8 @@
 import React from 'react';
 
-import BaseGrid from './grids/BaseGrid.jsx'
-import BaseLineGrid from './grids/BaseLineGrid.jsx'
-import ColumnGrid from './grids/ColumnGrid.jsx'
+import BaseGrid from './BaseGrid.jsx'
+import BaseLineGrid from './BaseLineGrid.jsx'
+import ColumnGrid from './ColumnGrid.jsx'
 
 
 

@@ -1,6 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
+import Radium from 'radium';
+
 class BaseLineGrid extends React.Component {
   componentDidMount() {
     const { store } = this.context;
@@ -27,7 +29,7 @@ class BaseLineGrid extends React.Component {
 
     let style = {
       base: {
-        width: state.gridState.fakeScreen,
+        width: 100+'%',
         minHeight:'100vh',
         height: 100+'%',
         position: 'absolute',
@@ -41,12 +43,12 @@ class BaseLineGrid extends React.Component {
     }
     return (
       <div>
-        <svg style={style.base}>
+        <svg style={[style.base,show ? {display:''} : {display:'none'} ]}>
           <defs>
-            <pattern id="Division" x="0" y="0" width="100%" height={baselinediv} patternUnits="userSpaceOnUse">
+            <pattern id="Division" x="0" y="0" width={S.stage} height={baselinediv} patternUnits="userSpaceOnUse">
               <line strokeWidth="1" stroke={color} strokeOpacity={opacity/2} x1="0" x2="100%" y1={baselinediv-0.5} y2={baselinediv-0.5} strokeDasharray="1,1"/>
             </pattern>
-            <pattern id="baselinePattern" x="0" y="0" width="100%" height={baseline} patternUnits="userSpaceOnUse">
+            <pattern id="baselinePattern" x="0" y="0" width={S.stage} height={baseline} patternUnits="userSpaceOnUse">
             <line strokeWidth="1" stroke={color} strokeOpacity={opacity} x1="0" x2="100%" y1={baseline-0.5} y2={baseline-0.5} strokeDasharray="1,1"/>
               <rect x="0" y="0" width="100%" height={baseline} fillOpacity="1"  strokeOpacity="0" fill="url(#Division)"/>
             </pattern>
@@ -61,7 +63,7 @@ class BaseLineGrid extends React.Component {
 BaseLineGrid.contextTypes = {
     store: React.PropTypes.object
   }
-
-BaseLineGrid = connect()(BaseLineGrid)
+BaseLineGrid = Radium(BaseLineGrid);
+BaseLineGrid = connect()(BaseLineGrid);
 
 export default BaseLineGrid

@@ -2,10 +2,14 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import NumInput2 from '../NumInput2.jsx'
+import Switch from '../Switch.jsx'
 
 import {BaseLineChange,BaseLineDivisionsChange} from '../../actions/gridStateActions.js'
+import {BaseLineShow} from '../../actions/gridGeneralActions.js'
 
-class BaseLineHeightControl extends React.Component {
+
+
+class BaseLineControl extends React.Component {
   componentDidMount() {
     const { store } = this.context;
     this.unsubscribe = store.subscribe(() =>
@@ -35,7 +39,7 @@ class BaseLineHeightControl extends React.Component {
       }
     }
     return (
-      <div style={this.props.style}>
+      <div>
         <div style={style.section}>
           <NumInput2
             name="Base Line Height"
@@ -49,16 +53,22 @@ class BaseLineHeightControl extends React.Component {
             plus={()=>store.dispatch(BaseLineDivisionsChange(state.gridState.baseLineDivisions + 1))}
             minus={()=>store.dispatch(BaseLineDivisionsChange(state.gridState.baseLineDivisions - 1))}
           />
-        </div>
+          <Switch
+          name="Show"
+          defaultValue={state.gridGeneral.baseLineShow}
+          value={state.gridGeneral.baseLineShow}
+          onChange={(e)=>store.dispatch(BaseLineShow(state.gridGeneral.baseLineShow))}
+          />
+          </div>
       </div>
     )
   };
 };
 
-BaseLineHeightControl.contextTypes = {
+BaseLineControl.contextTypes = {
     store: React.PropTypes.object
   }
 
-BaseLineHeightControl = connect()(BaseLineHeightControl)
+BaseLineControl = connect()(BaseLineControl)
 
-export default BaseLineHeightControl
+export default BaseLineControl

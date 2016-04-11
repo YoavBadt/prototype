@@ -1,8 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import Controls from './Controls.jsx';
-import Grids from './Grids.jsx';
+import Grids from './SVGgrids/Grids.jsx';
 import Content from './Content.jsx';
 
 
