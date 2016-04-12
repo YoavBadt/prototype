@@ -35,7 +35,12 @@ class BaseLineControl extends React.Component {
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'space-between',
-        alignItems: 'flex-end '
+        alignItems: 'flex-start '
+      },
+      label : {
+        fontSize: 10,
+        lineHeight: 10 + 'px',
+        marginBottom: 10
       }
     }
     return (
@@ -44,9 +49,10 @@ class BaseLineControl extends React.Component {
           <NumInput2
             name="Base Line Height"
             label={S.baseLineHeight}
-            plus={()=>store.dispatch(BaseLineChange(state.gridState.baseLineHeight + 1))}
-            minus={()=>store.dispatch(BaseLineChange(state.gridState.baseLineHeight - 1))}
+            plus={()=>store.dispatch(BaseLineChange(S.baseLineHeight + 1))}
+            minus={()=>store.dispatch(BaseLineChange(S.baseLineHeight - 1))}
           />
+          <label style={style.label}>Base Font Size Ratio : {(S.baseLineHeight/S.baseFontSize).toFixed(2)}</label>
           <NumInput2
             name="Divisions"
             label={state.gridState.baseLineDivisions}
@@ -59,6 +65,7 @@ class BaseLineControl extends React.Component {
           value={state.gridGeneral.baseLineShow}
           onChange={(e)=>store.dispatch(BaseLineShow(state.gridGeneral.baseLineShow))}
           />
+          
           </div>
       </div>
     )

@@ -18,3 +18,10 @@ export const ColumnShow = (payload) => {
     payload
   };
 };
+
+export const preview = (payload) => {
+  return {
+    type: 'PREVIEW',
+    payload
+  };
+};

@@ -84,7 +84,7 @@ class HomePage extends React.Component {
     const { store } = this.context;
     const state = store.getState();
     let S = state.gridState;
-
+    let T = state.textState;
     let style = {
       main : {
       width: 100+'%',
@@ -125,8 +125,8 @@ class HomePage extends React.Component {
               fontWeight='normal'
               fontFamily='Helvetica'
               fontColor='white'
-              fix={true}
-              specs={false}
+              fix={T.fix}
+              specs={T.specs}
             />
             </div>
             </div>
@@ -143,8 +143,8 @@ class HomePage extends React.Component {
             fontWeight='Bold'
             fontFamily='Helvetica'
             fontColor='rgba(80,80,80,1)'
-            fix={true}
-            specs={false}
+            fix={T.fix}
+            specs={T.specs}
           />
           <TextBox
             text="Line up and take shape"
@@ -156,7 +156,8 @@ class HomePage extends React.Component {
             fontWeight='normal'
             fontFamily='Helvetica'
             fontColor='rgba(80,80,80,1)'
-            fix={true}
+            fix={T.fix}
+            specs={T.specs}
           />
           
           <TextBox
@@ -169,7 +170,8 @@ class HomePage extends React.Component {
             fontWeight='normal'
             fontFamily='Helvetica'
             fontColor='rgba(80,80,80,1)'
-            fix={true}
+            fix={T.fix}
+            specs={T.specs}
           />
         <TextBox
           name="P"
@@ -180,7 +182,8 @@ class HomePage extends React.Component {
           fontWeight='normal'
           fontFamily='Helvetica'
           fontColor='rgba(80,80,80,1)'
-          fix={true}
+          fix={T.fix}
+          specs={T.specs}
           text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam vitae dictum tellus, nec sagittis leo. Fusce quis leo ac ipsum auctor varius. Donec convallis, nunc nec mollis faucibus, urna arcu pretium justo, in mollis orci tortor et libero. Vivamus dignissim placerat erat, eu dictum sem laoreet eget. Phasellus convallis, mauris non commodo posuere, lorem est vestibulum lorem, congue efficitur metus est quis turpis. Maecenas leo mi, interdum at augue id, fringilla dictum enim. Nulla sit amet suscipit est. In at suscipit dolor. Etiam id mollis turpis, quis imperdiet diam. Morbi nibh nulla, posuere et consectetur vel, consectetur id mi."
         />
         <TextBox
@@ -192,19 +195,8 @@ class HomePage extends React.Component {
           fontWeight='normal'
           fontFamily='Helvetica'
           fontColor='rgba(80,80,80,1)'
-          fix={true}
-          text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam vitae dictum tellus, nec sagittis leo. Fusce quis leo ac ipsum auctor varius. Donec convallis, nunc nec mollis faucibus, urna arcu pretium justo, in mollis orci tortor et libero. Vivamus dignissim placerat erat, eu dictum sem laoreet eget. Phasellus convallis, mauris non commodo posuere, lorem est vestibulum lorem, congue efficitur metus est quis turpis. Maecenas leo mi, interdum at augue id, fringilla dictum enim. Nulla sit amet suscipit est. In at suscipit dolor. Etiam id mollis turpis, quis imperdiet diam. Morbi nibh nulla, posuere et consectetur vel, consectetur id mi."
-        />
-        <TextBox
-          name="P"
-          fontSize={S.scale[0]}
-          lineHeight={S.lines[0]}
-          baseLine={S.baseLineHeight}
-          baseFontSize={S.baseFontSize}
-          fontWeight='normal'
-          fontFamily='Helvetica'
-          fontColor='rgba(80,80,80,1)'
-          fix={true}
+          fix={T.fix}
+          specs={T.specs}
           text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam vitae dictum tellus, nec sagittis leo. Fusce quis leo ac ipsum auctor varius. Donec convallis, nunc nec mollis faucibus, urna arcu pretium justo, in mollis orci tortor et libero. Vivamus dignissim placerat erat, eu dictum sem laoreet eget. Phasellus convallis, mauris non commodo posuere, lorem est vestibulum lorem, congue efficitur metus est quis turpis. Maecenas leo mi, interdum at augue id, fringilla dictum enim. Nulla sit amet suscipit est. In at suscipit dolor. Etiam id mollis turpis, quis imperdiet diam. Morbi nibh nulla, posuere et consectetur vel, consectetur id mi."
         />
         </div>

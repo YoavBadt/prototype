@@ -2,9 +2,9 @@ import React from 'react';
 import { connect } from 'react-redux';
 import Radium from 'radium';
 
-import ModScale from './content/ModScale.jsx';
-import BlogPost from './content/BlogPost.jsx';
-import HomePage from './content/HomePage.jsx';
+import ModScalePage from './ModScalePage.jsx';
+import BlogPost from './BlogPost.jsx';
+import HomePage from './HomePage.jsx';
 
 
 class Content extends React.Component {
@@ -33,11 +33,18 @@ class Content extends React.Component {
     const { store } = this.context;
     const state = store.getState();
     let P = state.pageState.currentPage;
+    let style = {
+      footer:{
+        height: state.gridState.baseLineHeight * 10,
+        outline: '1px solid red'
+      }
+    }
     return (
       <div>
-      <div style={"Modular_Scale"===P ? {display:''} : {display:'none'}}><ModScale /></div>
+      <div style={"Modular_Scale"===P ? {display:''} : {display:'none'}}><ModScalePage /></div>
       <div style={"Home_Page"===P ? {display:''} : {display:'none'}}><HomePage /></div>
       <div style={"Blog_Post"===P ? {display:''} : {display:'none'}}><BlogPost /></div>
+      <div style={style.footer}>footer</div>
       </div>
     )
   };

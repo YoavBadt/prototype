@@ -76,9 +76,7 @@ class ColumnGridControl extends React.Component {
           value={state.gridGeneral.columnShow}
           onChange={(e)=>store.dispatch(ColumnShow(state.gridGeneral.columnShow))}
           />
-          <label style={style.label}>screen : {S.fakeScreen}</label>
-          <label style={style.label}>stage : {S.stage}</label>
-          <label style={style.label}>margin : {S.margin}</label>
+          <label style={style.label}>screen-{S.fakeScreen}....stage-{S.stage}....margin-{S.margin}</label>
         </div>
       </div>
     )

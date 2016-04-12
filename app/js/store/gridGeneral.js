@@ -1,5 +1,6 @@
 export const gridGeneral = (
   state={
+    preview: false,
     baseLineColor: 'blue',
     baseLineShow: true,
     baseLineVisibility: 0.5,
@@ -13,6 +14,11 @@ export const gridGeneral = (
   action
   )=>{
   switch (action.type) {
+    case 'PREVIEW':
+      return{
+        ...state,
+        preview : !action.payload,
+      };
     case 'BASE_LINE_SHOW':
       return{
         ...state,

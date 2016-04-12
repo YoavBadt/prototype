@@ -21,11 +21,11 @@ const switchState = (currentState,settingTo,state) => {
 
 let state_320 = {
     baseFontSize: 16,
-    modularScale: 1.3,
+    modularScale: 1.2,
     baseLineHeight: 24,
     baseLineDivisions: 1,
-    lines: lineCalculator(16,1.3,24,1),
-    scale: scaleCalculator(16,1.3),
+    lines: lineCalculator(16,1.2,24,1),
+    scale: scaleCalculator(16,1.2),
     baseUnit: 24,
     baseUnitOffset: 16,
     baseUnitDivisions: 1,

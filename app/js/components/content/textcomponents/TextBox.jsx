@@ -13,6 +13,7 @@ class TextBox extends React.Component {
       outline: specs ? '1px solid pink' : 'none',
       position: 'relative',
       width:100+'%',
+      marginBottom: fix ? 0 : baseline,
       },
       main : {
       fontSize : fontSize,
@@ -20,12 +21,11 @@ class TextBox extends React.Component {
       color: this.props.fontColor,
       fontFamily: this.props.fontFamily,
       fontWeight: this.props.fontWeight,
-      margin:0,
       },
       before : {
         height : lineHeight,
-        display: fix ? 'inline-block' : 'none',
-        verticalAlign : 'baseline',
+        display: 'inline-block' ,
+        verticalAlign : fix ? 'baseline': 'top',
         width: 10,
         borderTop: specs ? '1px solid red' : 'none',
         borderLeft: specs ? '1px solid red' : 'none',
@@ -49,7 +49,7 @@ class TextBox extends React.Component {
         background: 'rgba(255,0,0,0)',
         color: 'red',
         fontFamily:'monospace',
-        display: specs ? '' : 'none'
+        display: specs ? 'inline-block' : 'none'
       }
     }
     return(

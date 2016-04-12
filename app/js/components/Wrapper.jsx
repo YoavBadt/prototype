@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import Grids from './SVGgrids/Grids.jsx';
-import Content from './Content.jsx';
+import Content from './content/Content.jsx';
 
 
 class Wrapper extends React.Component {
@@ -24,6 +24,8 @@ class Wrapper extends React.Component {
     const { store } = this.context;
     const state = store.getState();
     let style = {
+      main:{
+      top: 40,
       position: 'relative',
       background: 'white',
       zIndex: -100,
@@ -31,9 +33,10 @@ class Wrapper extends React.Component {
       minHeight: 100+'vh',
       margin: '0 auto',
       boxShadow: '0px 0px 0px 1px rgba(0,0,0,1)'
+      }
     }
     return (
-      <div style={style}>
+      <div style={style.main}>
         <Grids />
         <Content />
       </div>

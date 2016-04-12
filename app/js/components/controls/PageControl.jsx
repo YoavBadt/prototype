@@ -1,10 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { set320,set720,set1440,set1920 } from '../../actions/gridStateActions.js'
 import ButtonR from '../ButtonR.jsx'
+import {changePage} from '../../actions/pageStateActions.js'
 
-class ScreenSizeControl extends React.Component {
+class PageControl extends React.Component {
   componentDidMount() {
     const { store } = this.context;
     this.unsubscribe = store.subscribe(() =>
@@ -20,6 +20,8 @@ class ScreenSizeControl extends React.Component {
     const state = store.getState();
 
     let S = state.gridState;
+    let P = state.pageState;
+    let b_width = 200;
     let style = {
       main:{
         boxSizing: 'border-box',
@@ -47,35 +49,27 @@ class ScreenSizeControl extends React.Component {
       <div style={style.main}>
         <div style={style.section}>
         <ButtonR 
-          value='state_320'
-          onClick={(e) => store.dispatch(set320())}
-          text="320"
-          check={S.currentState}
-          width={25+'%'}
+          value='Modular_Scale'
+          onClick={(e) => store.dispatch(changePage(e.target.value))}
+          text="Mod Scale"
+          check={P.currentPage}
+          width={b_width}
         />
         <hr style={style.vr}/>
         <ButtonR 
-          value='state_720'
-          onClick={(e) => store.dispatch(set720())}
-          text="720"
-          check={S.currentState}
-          width={25+'%'}
+          value='Blog_Post'
+          onClick={(e) => store.dispatch(changePage(e.target.value))}
+          text="Blog Post"
+          check={P.currentPage}
+          width={b_width}
         />
         <hr style={style.vr}/>
         <ButtonR 
-          value='state_1440'
-          onClick={(e) => store.dispatch(set1440())}
-          text="1440"
-          check={S.currentState}
-          width={25+'%'}
-        />
-        <hr style={style.vr}/>
-        <ButtonR 
-          value='state_1920'
-          onClick={(e) => store.dispatch(set1920())}
-          text="1920"
-          check={S.currentState}
-          width={25+'%'}
+          value='Home_Page'
+          onClick={(e) => store.dispatch(changePage(e.target.value))}
+          text="Home Page"
+          check={P.currentPage}
+          width={b_width}
         />
         </div>
       </div>
@@ -84,9 +78,9 @@ class ScreenSizeControl extends React.Component {
 };
 
 
-ScreenSizeControl.contextTypes = {
+PageControl.contextTypes = {
     store: React.PropTypes.object
   };
-ScreenSizeControl = connect()(ScreenSizeControl);
+PageControl = connect()(PageControl);
 
-export default ScreenSizeControl
+export default PageControl

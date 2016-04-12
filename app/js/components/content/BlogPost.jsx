@@ -46,9 +46,15 @@ class BlogPost extends React.Component {
     const { store } = this.context;
     const state = store.getState();
     let S = state.gridState;
-
+    let Cols = S.columnWidthPx + S.gutterWidthPx;
+    let T = state.textState;
+    let B = state.blogPostState;
     let style = {
-      main : {
+      wrapper:{
+        width: S.stage,
+        marginLeft: S.margin
+      },
+      content : {
       width: this.setWidth(),
       margin: '0 auto',
       paddingTop: S.baseLineHeight,
@@ -58,7 +64,8 @@ class BlogPost extends React.Component {
       
     }
     return (
-      <div style={style.main}>
+      <div style={style.wrapper}>
+      <div style={style.content}>
           <TextBox
             text="Blog Post Title"
             name="h2"
@@ -69,8 +76,8 @@ class BlogPost extends React.Component {
             fontWeight='Bold'
             fontFamily='Helvetica'
             fontColor='rgba(80,80,80,1)'
-            fix={true}
-            specs={false}
+            fix={T.fix}
+            specs={T.specs}
           />
           <TextBox
           name="P"
@@ -81,7 +88,8 @@ class BlogPost extends React.Component {
           fontWeight='normal'
           fontFamily='Helvetica'
           fontColor='rgba(80,80,80,1)'
-          fix={true}
+          fix={T.fix}
+          specs={T.specs}
           text="published on 20.20.2000 / something"
         />
           <TextBox
@@ -94,7 +102,8 @@ class BlogPost extends React.Component {
             fontWeight='normal'
             fontFamily='Helvetica'
             fontColor='rgba(80,80,80,1)'
-            fix={true}
+            fix={T.fix}
+            specs={T.specs}
           />
           
           <TextBox
@@ -107,7 +116,8 @@ class BlogPost extends React.Component {
             fontWeight='normal'
             fontFamily='Helvetica'
             fontColor='rgba(80,80,80,1)'
-            fix={true}
+            fix={T.fix}
+            specs={T.specs}
           />
         <TextBox
           name="P"
@@ -118,7 +128,8 @@ class BlogPost extends React.Component {
           fontWeight='normal'
           fontFamily='Helvetica'
           fontColor='rgba(80,80,80,1)'
-          fix={true}
+          fix={T.fix}
+          specs={T.specs}
           text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam vitae dictum tellus, nec sagittis leo. Fusce quis leo ac ipsum auctor varius. Donec convallis, nunc nec mollis faucibus, urna arcu pretium justo, in mollis orci tortor et libero. Vivamus dignissim placerat erat, eu dictum sem laoreet eget. Phasellus convallis, mauris non commodo posuere, lorem est vestibulum lorem, congue efficitur metus est quis turpis. Maecenas leo mi, interdum at augue id, fringilla dictum enim. Nulla sit amet suscipit est. In at suscipit dolor. Etiam id mollis turpis, quis imperdiet diam. Morbi nibh nulla, posuere et consectetur vel, consectetur id mi."
         />
         <TextBox
@@ -130,7 +141,8 @@ class BlogPost extends React.Component {
           fontWeight='normal'
           fontFamily='Helvetica'
           fontColor='rgba(80,80,80,1)'
-          fix={true}
+          fix={T.fix}
+          specs={T.specs}
           text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam vitae dictum tellus, nec sagittis leo. Fusce quis leo ac ipsum auctor varius. Donec convallis, nunc nec mollis faucibus, urna arcu pretium justo, in mollis orci tortor et libero. Vivamus dignissim placerat erat, eu dictum sem laoreet eget. Phasellus convallis, mauris non commodo posuere, lorem est vestibulum lorem, congue efficitur metus est quis turpis. Maecenas leo mi, interdum at augue id, fringilla dictum enim. Nulla sit amet suscipit est. In at suscipit dolor. Etiam id mollis turpis, quis imperdiet diam. Morbi nibh nulla, posuere et consectetur vel, consectetur id mi."
         />
         <TextBox
@@ -142,9 +154,11 @@ class BlogPost extends React.Component {
           fontWeight='normal'
           fontFamily='Helvetica'
           fontColor='rgba(80,80,80,1)'
-          fix={true}
+          fix={T.fix}
+          specs={T.specs}
           text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam vitae dictum tellus, nec sagittis leo. Fusce quis leo ac ipsum auctor varius. Donec convallis, nunc nec mollis faucibus, urna arcu pretium justo, in mollis orci tortor et libero. Vivamus dignissim placerat erat, eu dictum sem laoreet eget. Phasellus convallis, mauris non commodo posuere, lorem est vestibulum lorem, congue efficitur metus est quis turpis. Maecenas leo mi, interdum at augue id, fringilla dictum enim. Nulla sit amet suscipit est. In at suscipit dolor. Etiam id mollis turpis, quis imperdiet diam. Morbi nibh nulla, posuere et consectetur vel, consectetur id mi."
         />
+      </div>
       </div>
     )
   };

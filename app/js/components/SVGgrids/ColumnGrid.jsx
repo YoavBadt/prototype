@@ -83,7 +83,6 @@ class ColumnGrid extends React.Component {
               y2="100%"
               strokeDasharray="1,1"
               />
-              
           </pattern>
         </defs>
         <rect  x={Position-1} y="0" width={Stage+3} height="100%" fill="url(#ColumnPattern)" fillOpacity="1"></rect>

@@ -5,8 +5,10 @@ import { connect } from 'react-redux'
 
 import { set320, set720, set1440, set1920 } from '../actions/gridStateActions.js'
 
-import Menu from './content/Menu.jsx'
+import Menu from './controls/Menu.jsx'
 import Controls from './gridcontrols/Controls.jsx';
+import TextControls from './textcontrols/TextControls.jsx';
+
 import Wrapper from './Wrapper.jsx';
 
 import store from '../store';
@@ -31,6 +33,7 @@ class Prototype extends React.Component {
       <div>
         <Menu />
         <Controls />
+        <TextControls />
         <Wrapper />
       </div>
     )

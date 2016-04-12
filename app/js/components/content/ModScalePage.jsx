@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import TextBox from './textcomponents/TextBox.jsx'
 
-class ModScale extends React.Component {
+class ModScalePage extends React.Component {
   constructor(){
     super();
     this.setWidth = this.setWidth.bind(this);
@@ -46,12 +46,12 @@ class ModScale extends React.Component {
     const { store } = this.context;
     const state = store.getState();
     let S = state.gridState;
-
+    let T = state.textState;
     let style = {
       main : {
       width: this.setWidth(),
       margin: '0 auto',
-      paddingTop: S.baseLineHeight,
+      paddingTop: S.baseLineHeight * 2,
       display: 'flex',
       flexDirection: 'Column'
       },
@@ -59,7 +59,8 @@ class ModScale extends React.Component {
         color: 'rgba(80,80,80,1)',
         marginBottom: S.baseLineHeight,
         display: 'flex',
-        flexDirection: 'Column'
+        flexDirection: 'Column',
+        marginBottom: S.baseLineHeight * 2
       }
     }
     return (
@@ -75,8 +76,8 @@ class ModScale extends React.Component {
             fontWeight='Bold'
             fontFamily='Helvetica'
             fontColor='rgba(80,80,80,1)'
-            fix={true}
-            specs={true}
+            fix={T.fix}
+            specs={T.specs}
           />
         </div>
         <div style={style.section}>
@@ -90,8 +91,8 @@ class ModScale extends React.Component {
             fontWeight='Bold'
             fontFamily='Helvetica'
             fontColor='rgba(80,80,80,1)'
-            fix={true}
-            specs={true}
+            fix={T.fix}
+            specs={T.specs}
           />
         </div>
         <div style={style.section}>
@@ -105,8 +106,8 @@ class ModScale extends React.Component {
             fontWeight='Bold'
             fontFamily='Helvetica'
             fontColor='rgba(80,80,80,1)'
-            fix={true}
-            specs={true}
+            fix={T.fix}
+            specs={T.specs}
           />
         </div>
         <div style={style.section}>
@@ -120,8 +121,8 @@ class ModScale extends React.Component {
             fontWeight='Bold'
             fontFamily='Helvetica'
             fontColor='rgba(80,80,80,1)'
-            fix={true}
-            specs={true}
+            fix={T.fix}
+            specs={T.specs}
           />
         </div>
         <div style={style.section}>
@@ -135,8 +136,8 @@ class ModScale extends React.Component {
             fontWeight='normal'
             fontFamily='Helvetica'
             fontColor='rgba(80,80,80,1)'
-            fix={true}
-            specs={true}
+            fix={T.fix}
+            specs={T.specs}
           />
         </div>
         <div style={style.section}>
@@ -150,8 +151,8 @@ class ModScale extends React.Component {
             fontWeight='normal'
             fontFamily='Helvetica'
             fontColor='rgba(80,80,80,1)'
-            fix={true}
-            specs={true}
+            fix={T.fix}
+            specs={T.specs}
           />
         </div>
         <div style={style.section}>
@@ -164,8 +165,8 @@ class ModScale extends React.Component {
           fontWeight='normal'
           fontFamily='Helvetica'
           fontColor='rgba(80,80,80,1)'
-          fix={true}
-          specs={true}
+          fix={T.fix}
+          specs={T.specs}
           text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam vitae dictum tellus, nec sagittis leo. Fusce quis leo ac ipsum auctor varius. Donec convallis, nunc nec mollis faucibus, urna arcu pretium justo, in mollis orci tortor et libero. Vivamus dignissim placerat erat, eu dictum sem laoreet eget. Phasellus convallis, mauris non commodo posuere, lorem est vestibulum lorem, congue efficitur metus est quis turpis. Maecenas leo mi, interdum at augue id, fringilla dictum enim. Nulla sit amet suscipit est. In at suscipit dolor. Etiam id mollis turpis, quis imperdiet diam. Morbi nibh nulla, posuere et consectetur vel, consectetur id mi."
         />
       </div> 
@@ -173,10 +174,10 @@ class ModScale extends React.Component {
     )
   };
 };
-ModScale.contextTypes = {
+ModScalePage.contextTypes = {
     store: React.PropTypes.object
   }
-ModScale = connect()(ModScale)
+ModScalePage = connect()(ModScalePage)
 
-export default ModScale
+export default ModScalePage
 

@@ -1,20 +1,19 @@
 import React from 'react';
 
-import ScreenSizeControl from './ScreenSizeControl.jsx'
-import BaseUnitControl from './BaseUnitControl.jsx';
-import BaseLineControl from './BaseLineControl.jsx';
-import BaseFontSizeControl from './BaseFontSizeControl.jsx';
-import ModularScaleControl from './ModularScaleControl.jsx';
-import ColumnGridControl from './ColumnGridControl.jsx'
+import FontSizeControl from './FontSizeControl.jsx';
+import LineHeightControl from './LineHeightControl.jsx';
+import TextGeneral from './TextGeneral.jsx';
 
-class Controls extends React.Component {
+import BlogControl from './BlogControl.jsx';
+
+class TextControls extends React.Component {
   render() {
     let style = {
       main : {
       position: 'fixed',
       zIndex: 1000,
       top: 80,
-      left: 40,
+      right: 40,
       bottom: 40,
       width: 220,
       boxSizing: 'border-box',
@@ -66,23 +65,21 @@ class Controls extends React.Component {
     return (
       <div style={style.main}>
         <div style={style.header}>
-          <h4 style={{margin:0}}>Grid Settings</h4>
+          <h4 style={{margin:0}}>Text Settings</h4>
         </div>
           <div style ={style.content}>
             <div style={style.section}>
-              <BaseFontSizeControl/>
+              <TextGeneral />
             </div>
             <div style={style.section}>
-              <ModularScaleControl/>
+            
             </div>
             <div style={style.section}>
-              <BaseLineControl/>
+              
             </div>
             <div style={style.section}>
-              <ColumnGridControl/>
             </div>
             <div style={style.section}>
-              <BaseUnitControl/>
             </div>
           </div>
         <div style ={style.footer}></div>
@@ -91,4 +88,8 @@ class Controls extends React.Component {
   };
 };
 
-export default Controls
+export default TextControls
+
+// <BlogControl />
+// <FontSizeControl />
+// <LineHeightControl />
