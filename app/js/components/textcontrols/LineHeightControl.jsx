@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import NumInput from '../NumInput.jsx'
 import NumInput2 from '../NumInput2.jsx'
 
-import {changeLineHeight} from '../../actions/textStateActions'
+import {changeLineHeight} from '../../actions/textStateGeneralActions'
 
 class LineHeightControl extends React.Component {
   componentDidMount() {
@@ -40,8 +40,8 @@ class LineHeightControl extends React.Component {
           <NumInput2
             name="Line Height"
             label={state.textState.lineHeight}
-            plus={()=>store.dispatch(changeLineHeight(state.textState.lineHeight + 1))}
-            minus={()=>store.dispatch(changeLineHeight(state.textState.lineHeight - 1))}
+            plus={()=>store.dispatch()}
+            minus={()=>store.dispatch()}
           />
         </div>
       </div>

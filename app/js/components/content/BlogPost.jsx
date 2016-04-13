@@ -47,7 +47,7 @@ class BlogPost extends React.Component {
     const state = store.getState();
     let S = state.gridState;
     let Cols = S.columnWidthPx + S.gutterWidthPx;
-    let T = state.textState;
+    let T = state.textStateGeneral;
     let B = state.blogPostState;
     let style = {
       wrapper:{

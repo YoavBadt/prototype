@@ -84,7 +84,7 @@ class HomePage extends React.Component {
     const { store } = this.context;
     const state = store.getState();
     let S = state.gridState;
-    let T = state.textState;
+    let T = state.textStateGeneral;
     let style = {
       main : {
       width: 100+'%',

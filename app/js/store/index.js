@@ -2,14 +2,14 @@ import { createStore, combineReducers } from 'redux';
 import {gridGeneral} from './gridGeneral';
 import {gridState} from './gridState';
 import {pageState} from './pageState';
-import {textState} from './textState';
+import {textStateGeneral} from './textStateGeneral';
 import {blogPostState} from './blogPostState';
 
 const protoType = combineReducers({
   gridGeneral,
   gridState,
   pageState,
-  textState,
+  textStateGeneral,
   blogPostState
 });
 

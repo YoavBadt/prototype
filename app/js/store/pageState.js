@@ -1,6 +1,6 @@
 export const pageState = (
   state={
-    currentPage: 'Blog_Post',
+    currentPage: 'Modular_Scale',
   },
   action
   )=>{

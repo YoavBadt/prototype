@@ -46,7 +46,7 @@ class ModScalePage extends React.Component {
     const { store } = this.context;
     const state = store.getState();
     let S = state.gridState;
-    let T = state.textState;
+    let T = state.textStateGeneral;
     let style = {
       main : {
       width: this.setWidth(),
@@ -67,7 +67,7 @@ class ModScalePage extends React.Component {
       <div style={style.main}>
         <div style={style.section}>
           <TextBox
-            text="Lorem ipsum dolor sit amet Ag"
+            text="Lorem ipsum"
             name="h1"
             fontSize={S.scale[6]}
             lineHeight={S.lines[6]}
@@ -82,7 +82,7 @@ class ModScalePage extends React.Component {
         </div>
         <div style={style.section}>
           <TextBox
-            text="Lorem ipsum dolor sit amet Ag"
+            text="Lorem ipsum"
             name="h2"
             fontSize={S.scale[5]}
             lineHeight={S.lines[5]}
@@ -97,7 +97,7 @@ class ModScalePage extends React.Component {
         </div>
         <div style={style.section}>
           <TextBox
-            text="Lorem ipsum dolor sit amet Ag"
+            text="Lorem ipsum"
             name="h3"
             fontSize={S.scale[4]}
             lineHeight={S.lines[4]}

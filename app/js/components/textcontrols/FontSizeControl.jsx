@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import NumInput from '../NumInput.jsx'
 import NumInput2 from '../NumInput2.jsx'
 
-import {changeFontSize} from '../../actions/textStateActions'
 
 class FontSizeControl extends React.Component {
   componentDidMount() {

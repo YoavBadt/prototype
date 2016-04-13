@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import Switch from '../Switch.jsx'
 import {preview} from '../../actions/gridGeneralActions.js'
-import {showTextSpecs} from '../../actions/textStateActions.js'
+import {showTextSpecs} from '../../actions/textStateGeneralActions.js'
 
 class Preview extends React.Component {
   componentDidMount() {

@@ -5,7 +5,7 @@ import NumInput from '../NumInput.jsx'
 import NumInput2 from '../NumInput2.jsx'
 import Switch from '../Switch.jsx';
 
-import {showTextSpecs,baseLineFix} from '../../actions/textStateActions';
+import {showTextSpecs,baseLineFix} from '../../actions/textStateGeneralActions';
 
 class TextGeneral extends React.Component {
   componentDidMount() {
@@ -21,6 +21,7 @@ class TextGeneral extends React.Component {
     const props = this.props;
     const { store } = this.context;
     const state = store.getState();
+    let T = state.textStateGeneral;
     let style = {
       title : {
         lineHeight: 20+'px',
@@ -41,15 +42,15 @@ class TextGeneral extends React.Component {
           <label style={style.title}>General :</label>
           <Switch
             name="Show Specs"
-            defaultValue={state.textState.specs}
-            value={state.textState.specs}
-            onChange={(e)=>store.dispatch(showTextSpecs(state.textState.specs))}
+            defaultValue={T.specs}
+            value={T.specs}
+            onChange={(e)=>store.dispatch(showTextSpecs(T.specs))}
           />
           <Switch
             name="Base Line Fix"
-            defaultValue={state.textState.fix}
-            value={state.textState.fix}
-            onChange={(e)=>store.dispatch(baseLineFix(state.textState.fix))}
+            defaultValue={T.fix}
+            value={T.fix}
+            onChange={(e)=>store.dispatch(baseLineFix(T.fix))}
           />
         </div>
       </div>
