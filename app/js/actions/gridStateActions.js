@@ -17,6 +17,7 @@ export const set1440 = () => {
 };
 
 export const set1920 = () => {
+  console.log('set1920')
   return {
     type: 'SET_1920'
   };

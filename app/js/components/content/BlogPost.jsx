@@ -2,6 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import TextBox from './textcomponents/TextBox.jsx'
+import TextBox2 from './textcomponents/TextBox2.jsx'
+
 
 class BlogPost extends React.Component {
   constructor(){
@@ -55,17 +57,25 @@ class BlogPost extends React.Component {
         marginLeft: S.margin
       },
       content : {
-      width: this.setWidth(),
-      margin: '0 auto',
-      paddingTop: S.baseLineHeight,
-      display: 'flex',
-      flexDirection: 'Column'
+        width: this.setWidth(),
+        margin: '0 auto',
+        paddingTop: S.baseLineHeight,
+        display: 'flex',
+        flexDirection: 'Column'
       },
       
     }
     return (
       <div style={style.wrapper}>
       <div style={style.content}>
+          <TextBox2 
+            text="expirimental box of pain"
+            state={state.H1}
+          />
+          <TextBox2 
+            text="expirimental box of pain"
+            state={state.H2}
+          />
           <TextBox
             text="Blog Post Title"
             name="h2"

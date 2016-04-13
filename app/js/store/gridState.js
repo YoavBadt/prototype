@@ -1,6 +1,6 @@
-import {scaleCalculator, lineCalculator, stageCalculator} from './lib.js'
+import {scaleCalculator, lineCalculator, stageCalculator} from './lib.js';
 
-const switchState = (currentState,settingTo,state) => {
+export const switchState = (currentState,settingTo,state) => {
     switch(currentState){
         case settingTo :
             break
@@ -16,10 +16,13 @@ const switchState = (currentState,settingTo,state) => {
         case 'state_1920' :
             state_1920 = state;
             break;
+        case 'intial':
+            break;
     };
 };
 
-let state_320 = {
+export let state_320 = {
+    fakeScreen: 320,
     baseFontSize: 16,
     modularScale: 1.2,
     baseLineHeight: 24,
@@ -38,7 +41,8 @@ let state_320 = {
     margin: stageCalculator(320,1,288,24).margin
 };
 
-let state_720 = {
+export let state_720 = {
+    fakeScreen: 720,
     baseFontSize: 16,
     modularScale: 1.32,
     baseLineHeight: 24,
@@ -57,7 +61,8 @@ let state_720 = {
     margin: stageCalculator(720,4,138,24).margin
 };
 
-let state_1440 = {
+export let state_1440 = {
+    fakeScreen: 1440,
     baseFontSize: 18,
     modularScale: 1.22,
     baseLineHeight: 26,
@@ -76,16 +81,17 @@ let state_1440 = {
     margin: stageCalculator(1440,8,130,26).margin
 };
 
-let state_1920 = {
+export let state_1920 = {
+    fakeScreen: 1920,
     baseFontSize: 22,
     modularScale: 1.285,
     baseLineHeight: 32,
-    baseLineDivisions: 4,
+    baseLineDivisions: 1,
+    lines: lineCalculator(22,1.285,32,1),
+    scale: scaleCalculator(22,1.285),
     baseUnit: 32,
     baseUnitOffset: 8,
     baseUnitDivisions: 1,
-    lines: lineCalculator(22,1.285,32,1),
-    scale: scaleCalculator(22,1.285),
     columns: 12,
     columnWidth: 4,
     columnWidthPx: 128,
@@ -97,24 +103,8 @@ let state_1920 = {
 
 export const gridState = (
   state={
-    fakeScreen: 1920,
-    currentState: 'state_1920',
-    baseFontSize: 22,
-    modularScale: 1.285,
-    baseLineHeight: 32,
-    baseLineDivisions: 2,
-    lines: lineCalculator(22,1.285,32,2),
-    scale: scaleCalculator(22,1.285),
-    baseUnit: 32,
-    baseUnitOffset: 8,
-    baseUnitDivisions: 1,
-    columns: 12,
-    columnWidth: 4,
-    columnWidthPx: 128,
-    gutterWidth: 0.5,
-    gutterWidthPx: 16,
-    stage: stageCalculator(1920,12,128,16).stage,
-    margin: stageCalculator(1920,12,128,16).margin
+    ...state_1920,
+    currentState : 'initial',
   },
   action
   )=>{
@@ -124,7 +114,6 @@ export const gridState = (
         state = Object.assign({}, state_320)
         return{
             ...state,
-            fakeScreen: 320,
             currentState : 'state_320',
         };
     case 'SET_720':
@@ -132,7 +121,6 @@ export const gridState = (
         state = Object.assign({}, state_720)
         return{
             ...state,
-            fakeScreen: 720,
             currentState : 'state_720'
         };
     case 'SET_1440':
@@ -140,7 +128,6 @@ export const gridState = (
         state = Object.assign({}, state_1440)
         return{
             ...state,
-            fakeScreen: 1440,
             currentState : 'state_1440'
         };
     case 'SET_1920':
@@ -148,7 +135,6 @@ export const gridState = (
         state = Object.assign({}, state_1920)
         return{
             ...state,
-            fakeScreen: 1920,
             currentState : 'state_1920'
         };
     case 'BASE_FONTSIZE_CHANGE':
@@ -156,7 +142,7 @@ export const gridState = (
             ...state,
             baseFontSize : action.payload,
             scale: scaleCalculator(action.payload,state.modularScale),
-            lines: lineCalculator(action.payload,state.modularScale,state.baseLineHeight,state.baseLineDivisions) 
+            lines: lineCalculator(action.payload,state.modularScale,state.baseLineHeight,state.baseLineDivisions)
         };
     case 'MODULAR_SCALE_CHANGE':
         return{
@@ -170,8 +156,8 @@ export const gridState = (
             ...state,
             baseLineHeight: action.payload,
             lines: lineCalculator(state.baseFontSize,state.modularScale,action.payload,state.baseLineDivisions),
-            columnWidth : state.columnWidthPx / action.payload,
-            gutterWidth : state.gutterWidthPx / action.payload
+            columnWidth : state.columnWidthPx / action.payload, //this is stupid?
+            gutterWidth : state.gutterWidthPx / action.payload //this is stupid?
         };
     case 'BASELINE_DIVISIONS_CHANGE':
         return {

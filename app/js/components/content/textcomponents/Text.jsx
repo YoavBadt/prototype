@@ -11,7 +11,7 @@ class Text extends React.Component {
     let baseLine = this.props.baseLine;
     let lineHeight = this.props.lineHeight;
     let specs = this.props.specs;
-    let fix =  this.props.fix
+    let fix =  this.props.fix;
     
     let style = {
       main : {

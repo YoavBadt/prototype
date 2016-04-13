@@ -1,6 +1,6 @@
 export const textStateGeneral = (
   state={
-    specs: true,
+    specs: false,
     fix: true,
   },
   action

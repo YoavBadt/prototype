@@ -1,61 +1,86 @@
 import React from 'react';
+import { connect } from 'react-redux';
+
 import SpecBox from './SpecBox.jsx';
+import Text from './Text.jsx';
+
 
 class TextBox2 extends React.Component {
+  componentDidMount() {
+    const { store } = this.context;
+    this.unsubscribe = store.subscribe(() =>
+      this.forceUpdate()
+    );
+  }
+  componentWillUnmount() {
+    this.unsubscribe();
+  }
   render(){
-    let fontSize = this.props.fontSize;
-    let baseFontSize = this.props.baseFontSize;
-    let baseLine = this.props.baseLine;
-    let lineHeight = this.props.lineHeight;
-    let name = this.props.name;
+    const props = this.props;
+    const { store } = this.context;
+    const state = store.getState();
 
-    let fix = this.props.fix;
-    let specs = this.props.specs;
+    let text = this.props.text;
+
+    let T = this.props.state;
+    let name = T.name;
+
+    let baseFontSize = T.baseFontSize;
+    let baseLine = T.baseLineHeight;
+
+    let fontSize = T.fontSize;
+    let lineHeight = T.lineHeight * baseLine;
+    let autoLineHeight = T.autoLineHeight;
+    let marginBottom = T.marginBottom * baseLine;
+
+    let fix = T.fix;
+    let specs = state.textStateGeneral.specs;
+
+    let fontColor =T.fontColor;
+    let fontFamily =T.fontFamily;
+    let fontWeight =T.fontWeight;
+
     let style = {
       container:{
         background: specs ? 'rgba(255,0,0,0.04)' : 'none',
         outline: specs ? '1px solid pink' : 'none',
         position: 'relative',
         width:100+'%',
-        marginBottom: fix ? 0 : baseLine,
-        },
-      main : {
-        fontSize : fontSize,
-        lineHeight : lineHeight + 'px',
-        color: this.props.fontColor,
-        fontFamily: this.props.fontFamily,
-        fontWeight: this.props.fontWeight,
-        wordWrap: 'break-word'
-        },
-        before : {
-          height : lineHeight,
-          display: 'inline-block' ,
-          verticalAlign : fix ? 'baseline': 'top',
-          
-        },
-        after : {
-          display: fix ? 'inline-block' : 'none',
-          verticalAlign: (Math.ceil((lineHeight/baseLine)/2)*baseLine) * -1,
-          height: baseLine,
+        marginBottom: marginBottom
         }
       }
     return(
     <div style={style.container}>
+      <Text
+        text={text}
+        name={name}
+        fontSize={fontSize}
+        baseFontSize={baseFontSize}
+        baseLine={baseLine}
+        lineHeight={T.autoLineHeightMode ? autoLineHeight : lineHeight}
+        specs={specs}
+        fix={fix}
+        fontColor={fontColor}
+        fontFamily={fontFamily}
+        fontWeight={fontWeight}
+        marginBottom={marginBottom}
+      />
       <SpecBox
         name={name}
         fontSize={fontSize}
         baseLine={baseLine}
-        lineHeight={lineHeight}
+        lineHeight={T.autoLineHeightMode ? autoLineHeight : lineHeight}
         baseFontSize={baseFontSize}
         specs={specs}
       />
-      <h style={style.main}>
-          <span style={style.before}></span>
-          {this.props.text}
-          <span style={style.after}></span>
-      </h>
     </div>
     )
   };
 };
+
+TextBox2.contextTypes = {
+    store: React.PropTypes.object
+  }
+TextBox2 = connect()(TextBox2)
+
 export default TextBox2
