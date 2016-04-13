@@ -2,6 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import TextBox from './textcomponents/TextBox.jsx'
+import TextBox2 from './textcomponents/TextBox2.jsx'
+
 
 class ModScalePage extends React.Component {
   constructor(){
@@ -66,6 +68,21 @@ class ModScalePage extends React.Component {
     return (
       <div style={style.main}>
         <div style={style.section}>
+          <TextBox2 
+            text="Expirimental box"
+            name="h1"
+            fontSize={S.scale[6]}
+            lineHeight={S.lines[6]}
+            baseLine={S.baseLineHeight}
+            baseFontSize={S.baseFontSize}
+            fontWeight='Bold'
+            fontFamily='Helvetica'
+            fontColor='rgba(255,80,80,1)'
+            fix={T.fix}
+            specs={true}
+          />
+          </div>
+          <div style={style.section}>
           <TextBox
             text="Lorem ipsum"
             name="h1"

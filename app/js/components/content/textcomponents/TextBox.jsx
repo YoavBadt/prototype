@@ -45,7 +45,7 @@ class TextBox extends React.Component {
       outline: specs ? '1px solid pink' : 'none',
       position: 'relative',
       width:100+'%',
-      marginBottom: fix ? 0 : baseline,
+      marginBottom: fix ? 0 : baseLine,
       },
       main : {
       fontSize : fontSize,
