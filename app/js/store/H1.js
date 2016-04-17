@@ -1,4 +1,5 @@
 import { scaleCalculator, lineCalculator } from './lib.js';
+import { combineReducers } from 'redux'
 
 export const H1 =(
   state={
@@ -52,4 +53,5 @@ export const H1 =(
       return state;
   };
 }
+
 

@@ -68,12 +68,12 @@ class BlogPost extends React.Component {
     return (
       <div style={style.wrapper}>
       <div style={style.content}>
-          <TextBox2 
+          <TextBox2
             text="expirimental box of pain"
             state={state.H1}
           />
-          <TextBox2 
-            text="expirimental box of pain"
+          <TextBox2
+            text="china cat sunflower"
             state={state.H2}
           />
           <TextBox

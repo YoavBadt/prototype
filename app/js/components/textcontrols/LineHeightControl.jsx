@@ -39,9 +39,9 @@ class LineHeightControl extends React.Component {
         <div style={style.section}>
           <NumInput2
             name="Line Height"
-            label={state.textState.lineHeight}
-            plus={()=>store.dispatch()}
-            minus={()=>store.dispatch()}
+            label={state.H1.lineHeight}
+            plus={()=>store.dispatch(changelineHeight(state.H1.lineHeight + 1))}
+            minus={()=>store.dispatch(changelineHeight(state.H1.lineHeight + 1))}
           />
         </div>
       </div>

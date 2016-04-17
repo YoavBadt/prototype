@@ -1,5 +1,6 @@
 import {scaleCalculator, lineCalculator, stageCalculator} from './lib.js';
 
+
 export const switchState = (currentState,settingTo,state) => {
     switch(currentState){
         case settingTo :
@@ -21,7 +22,7 @@ export const switchState = (currentState,settingTo,state) => {
     };
 };
 
-export let state_320 = {
+let state_320 = {
     fakeScreen: 320,
     baseFontSize: 16,
     modularScale: 1.2,
@@ -41,7 +42,7 @@ export let state_320 = {
     margin: stageCalculator(320,1,288,24).margin
 };
 
-export let state_720 = {
+let state_720 = {
     fakeScreen: 720,
     baseFontSize: 16,
     modularScale: 1.32,
@@ -61,7 +62,7 @@ export let state_720 = {
     margin: stageCalculator(720,4,138,24).margin
 };
 
-export let state_1440 = {
+let state_1440 = {
     fakeScreen: 1440,
     baseFontSize: 18,
     modularScale: 1.22,
@@ -81,7 +82,7 @@ export let state_1440 = {
     margin: stageCalculator(1440,8,130,26).margin
 };
 
-export let state_1920 = {
+let state_1920 = {
     fakeScreen: 1920,
     baseFontSize: 22,
     modularScale: 1.285,

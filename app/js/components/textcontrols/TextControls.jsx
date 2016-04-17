@@ -2,8 +2,9 @@ import React from 'react';
 
 import FontSizeControl from './FontSizeControl.jsx';
 import LineHeightControl from './LineHeightControl.jsx';
-import TextGeneral from './TextGeneral.jsx';
 
+import TextGeneral from './TextGeneral.jsx';
+import Test from './Test.jsx'
 import BlogControl from './BlogControl.jsx';
 
 class TextControls extends React.Component {
@@ -72,10 +73,12 @@ class TextControls extends React.Component {
               <TextGeneral />
             </div>
             <div style={style.section}>
-            
+            H1
+              <FontSizeControl />
+              <LineHeightControl />
             </div>
             <div style={style.section}>
-              
+              <Test />
             </div>
             <div style={style.section}>
             </div>

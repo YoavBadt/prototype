@@ -38,9 +38,9 @@ class FontSizeControl extends React.Component {
         <div style={style.section}>
           <NumInput2
             name="Font Size"
-            label={state.textState.fontSize}
-            plus={()=>store.dispatch(changeFontSize(state.textState.fontSize + 1))}
-            minus={()=>store.dispatch(changeFontSize(state.textState.fontSize - 1))}
+            label={state.H1.fontSize}
+            plus={()=>store.dispatch(changeFontSize(state.H1.fontSize + 1))}
+            minus={()=>store.dispatch(changeFontSize(state.H1.fontSize - 1))}
           />
         </div>
       </div>

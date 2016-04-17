@@ -38,7 +38,7 @@ class Controls extends React.Component {
         background: 'white',
         borderLeft: '1px red solid',
         borderRight: '1px red solid',
-        overflow: 'scroll'
+        overflow: 'auto'
       },
       section : {
         display: 'flex',

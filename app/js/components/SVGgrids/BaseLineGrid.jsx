@@ -17,7 +17,7 @@ class BaseLineGrid extends React.Component {
     const props = this.props;
     const { store } = this.context;
     const state = store.getState();
-
+    const i = state.screenState;
     let S = state.gridState;
     
     let baseline = S.baseLineHeight;

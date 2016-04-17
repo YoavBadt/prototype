@@ -50,7 +50,8 @@ class SpecBox extends React.Component {
           background: 'rgba(255,255,255,0.5)',
           color: 'red',
           fontFamily:'monospace',
-          display: specs ? 'inline-block' : 'none'
+          display: specs ? 'inline-block' : 'none',
+          wordWrap: 'break-word'
         },
         lineMark : {
           position: 'absolute',
