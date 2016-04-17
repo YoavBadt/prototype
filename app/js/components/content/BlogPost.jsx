@@ -83,8 +83,8 @@ class BlogPost extends React.Component {
             lineHeight={S.lines[5]}
             baseLine={S.baseLineHeight}
             baseFontSize={S.baseFontSize}
-            fontWeight='Bold'
-            fontFamily='Helvetica'
+            fontWeight='regular'
+            fontFamily='Noto Serif'
             fontColor='rgba(80,80,80,1)'
             fix={T.fix}
             specs={T.specs}
